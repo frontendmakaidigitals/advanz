@@ -63,7 +63,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* Brand */}
         <div
-          ref={(el) => el && (itemsRef.current[0] = el)}
+          ref={(el) => {
+            if (el) itemsRef.current[0] = el;
+          }}
           className="space-y-4"
         >
           <Logo className="w-40" />
@@ -74,7 +76,11 @@ const Footer = () => {
         </div>
 
         {/* Services */}
-        <div ref={(el) => el && (itemsRef.current[1] = el)}>
+        <div
+          ref={(el) => {
+            if (el) itemsRef.current[1] = el;
+          }}
+        >
           <h4 className="mb-4 font-semibold tracking-wide text-sm uppercase">
             Services
           </h4>
@@ -87,7 +93,11 @@ const Footer = () => {
         </div>
 
         {/* Quick links */}
-        <div ref={(el) => el && (itemsRef.current[2] = el)}>
+        <div
+          ref={(el) => {
+            if (el) itemsRef.current[2] = el;
+          }}
+        >
           <h4 className="mb-4 font-semibold tracking-wide text-sm uppercase">
             Quick Links
           </h4>
@@ -101,7 +111,9 @@ const Footer = () => {
 
         {/* Contact */}
         <div
-          ref={(el) => el && (itemsRef.current[3] = el)}
+          ref={(el) => {
+            if (el) itemsRef.current[3] = el;
+          }}
           className="space-y-4"
         >
           <h4 className="font-semibold tracking-wide text-sm uppercase">
