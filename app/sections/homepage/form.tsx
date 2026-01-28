@@ -101,7 +101,9 @@ const ContactFormSection = () => {
           {["Name", "Email", "Phone", "Message"].map((label, i) => (
             <div
               key={i}
-              ref={(el) => el && (fieldsRef.current[i] = el)}
+              ref={(el) => {
+                if (el) fieldsRef.current[i] = el;
+              }}
               className="flex flex-col"
             >
               <label className="mb-2 font-medium">{label}</label>
