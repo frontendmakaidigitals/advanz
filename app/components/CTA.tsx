@@ -31,7 +31,7 @@ const GoldScaleCTA = () => {
             end: "bottom 40%",
             scrub: true,
           },
-        }
+        },
       );
 
       // Button reveal (subtle)
@@ -47,7 +47,7 @@ const GoldScaleCTA = () => {
             trigger: sectionRef.current,
             start: "top 65%",
           },
-        }
+        },
       );
     }, sectionRef);
 
@@ -57,27 +57,37 @@ const GoldScaleCTA = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative my-28 flex items-center justify-center overflow-hidden"
+      className="relative mb-12 flex items-center justify-center overflow-hidden"
     >
       <div
         ref={cardRef}
-        className="container max-w-6xl rounded-2xl bg-yellow-400 py-20 text-center will-change-transform"
+        className="container overflow-hidden relative max-w-6xl rounded-2xl py-20 text-center will-change-transform"
       >
-        <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-800 mb-10">
-          Service That
-          <br />
-          Elevates Your Drive
-        </h2>
+        <div className="absolute inset-0 w-full h-full bg-black/40 z-10" />
+        <img
+          src={
+            "https://images.pexels.com/photos/7012891/pexels-photo-7012891.jpeg"
+          }
+          alt={""}
+          className="w-full h-full object-cover absolute inset-0"
+        />
+        <div className="relative z-10 ">
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-100 mb-10">
+            Service That
+            <br />
+            Elevates Your Drive
+          </h2>
 
-        <Link href="/contact">
-          <button
-            ref={buttonRef}
-            className="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-yellow-950 text-yellow-950 hover:bg-yellow-300 transition-colors"
-          >
-            Book an Appointment
-            <span className="text-xl">→</span>
-          </button>
-        </Link>
+          <Link href="/contact">
+            <button
+              ref={buttonRef}
+              className="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-yellow-400 text-yellow-400 hover:bg-yellow-300 transition-colors"
+            >
+              Book an Appointment
+              <span className="text-xl">→</span>
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

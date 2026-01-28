@@ -28,7 +28,7 @@ const FAQ = ({ faq }: { faq: FaqProps[] }) => {
       // Animate all FAQ items at once
       gsap.fromTo(
         containerRef.current,
-        { y: 40, opacity: 0 },
+        { y: 20, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -65,7 +65,7 @@ const FAQ = ({ faq }: { faq: FaqProps[] }) => {
           <Accordion type="single" collapsible>
             <AccordionItem
               value={item.question}
-              className="border border-slate-300 hover:shadow-md hover:cursor-pointer! transition-shadow duration-200  bg-neutral-50 rounded-xl px-3"
+              className="border border-slate-300 hover:shadow-md hover:cursor-pointer! transition-shadow duration-200  bg-neutral-300 rounded-xl px-3"
             >
               <AccordionTrigger className="text-left">
                 {item.question}

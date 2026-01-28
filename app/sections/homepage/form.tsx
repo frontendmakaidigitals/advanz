@@ -1,104 +1,61 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { useRef } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+const services = [
+  "Workshop Services",
+  "Body Shop Services",
+  "Spare Parts",
+  "Car Programming",
+  "Recovery & Assistance",
+];
 
 const ContactFormSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const fieldsRef = useRef<HTMLDivElement[]>([]);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // ✅ Background parallax (NO PIN)
-      if (bgRef.current && containerRef.current) {
-        gsap.fromTo(
-          bgRef.current,
-          { y: "-15%" },
-          {
-            y: "15%",
-            ease: "none",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          },
-        );
-      }
+  const handleSelectOpen = (open: boolean) => {
+    const smoother = ScrollSmoother.get();
+    if (!smoother) return;
 
-      // Text parallax
-      if (textRef.current) {
-        gsap.to(textRef.current, {
-          y: -50,
-          ease: "none",
-          scrollTrigger: {
-            trigger: textRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      }
-
-      // Form fields reveal
-      fieldsRef.current.forEach((field, i) => {
-        gsap.fromTo(
-          field,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            delay: i * 0.1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: field,
-              start: "top 85%",
-            },
-          },
-        );
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    smoother.paused(open);
+  };
 
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-screen px-6 md:px-20 flex items-center overflow-hidden"
-    >
-      {/* Background */}
-      <div
-        ref={bgRef}
-        className="absolute inset-0 -z-10 scale-110 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://ireland-chauffeur.com/wp-content/uploads/2018/11/black-mercedes-benz-in-the-darkness-52170-1920x1200.jpg')",
-        }}
-      />
-      <div className="absolute inset-0 w-full h-full bg-black/50 z-10" />
+    <section className="relative min-h-screen flex items-center bg-white py-28 overflow-hidden">
+      <div className="container max-w-5xl grid grid-cols-1 lg:grid-cols-2 items-start relative z-10">
+        {/* Left Content */}
+        <div
+          ref={textRef}
+          className="relative flex flex-col justify-end h-full p-6 min-h-[420px]"
+        >
+          <img
+            src="https://images.pexels.com/photos/16510639/pexels-photo-16510639.jpeg"
+            alt="Contact"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/20" />
 
-      {/* Content */}
-      <div className="max-w-5xl mx-auto grid grid-cols-1 relative z-20 lg:grid-cols-2 gap-16 items-start">
-        <div ref={textRef} className="mt-24">
-          <h2 className="text-4xl md:text-5xl tracking-tight font-bold mb-6 text-white">
+          <h2 className="text-4xl relative z-10 font-bold tracking-tight text-white mb-3">
             Get in Touch
           </h2>
-          <p className="text-gray-100">
+          <p className="relative z-10 text-gray-200 max-w-sm">
             Have questions or want to book a service? Fill out the form and our
             team will get back to you promptly.
           </p>
         </div>
 
-        <form className="space-y-4 bg-white/50 backdrop-blur-xl p-6 relative rounded-xl border border-slate-400">
-          {["Name", "Email", "Phone", "Message"].map((label, i) => (
+        {/* Form */}
+        <form className="space-y-4 bg-neutral-50 p-6 border border-slate-200 shadow-sm">
+          {["Name", "Email", "Phone", "Service", "Message"].map((label, i) => (
             <div
               key={i}
               ref={(el) => {
@@ -106,23 +63,44 @@ const ContactFormSection = () => {
               }}
               className="flex flex-col"
             >
-              <label className="mb-2 font-medium">{label}</label>
+              <label className="mb-2 font-medium text-slate-700">{label}</label>
+
+              {/* Message */}
               {label === "Message" ? (
                 <textarea
                   placeholder="Enter message"
-                  className="px-4 resize-none py-2 rounded-md bg-neutral-200 border border-slate-300"
                   rows={5}
+                  className="px-4 py-2 resize-none rounded-md bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 />
+              ) : label === "Service" ? (
+                /* Select Service */
+                <Select onOpenChange={handleSelectOpen}>
+                  <SelectTrigger className="bg-white border border-slate-300 focus:ring-2 focus:ring-yellow-400 w-full h-11!">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {services.map((service) => (
+                      <SelectItem key={service} value={service}>
+                        {service}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               ) : (
+                /* Inputs */
                 <input
-                  placeholder={`Enter ${label}`}
-                  type={label === "Phone" ? "number" : "text"}
-                  className="px-4 py-2 rounded-md bg-neutral-200 border border-slate-300"
+                  type={label === "Phone" ? "tel" : "text"}
+                  placeholder={`Enter ${label.toLowerCase()}`}
+                  className="px-4 py-2 rounded-md bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 />
               )}
             </div>
           ))}
-          <button className="px-6 py-2 bg-yellow-500 rounded-full font-semibold">
+
+          <button
+            type="submit"
+            className="mt-2 px-6 py-2 bg-yellow-500 hover:bg-yellow-600 transition rounded-full font-semibold text-black"
+          >
             Submit
           </button>
         </form>
