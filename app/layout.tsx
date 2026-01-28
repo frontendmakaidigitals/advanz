@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import ScrollSmootherProvider from "./components/Scroll-Smooth-Provider";
 import { Geist, Geist_Mono } from "next/font/google";
+import Footer from "./footer/footer";
 import "./globals.css";
+import Header from "./header/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,15 +22,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Header />
+        <div id="smooth-wrapper">
+          <div id="smooth-content">
+            <ScrollSmootherProvider />
+            {children}
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );
