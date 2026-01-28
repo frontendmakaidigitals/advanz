@@ -8,23 +8,21 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const brands = [
-  "BMW.svg",
-  "LandRover.svg.png",
-  "Mercedes-Logo.svg.png",
-  "Bugatti_Logo.png",
-  "ferrari.jpg",
-  "mclaren.jpg",
-  "lamborghini.png",
-  "Brabus-Logo.png",
-  "rolls_royce.png",
-  "jaguar-logo-non-transparent.jpg",
-  "maybach.jpg",
-  "Volkswagen-Logo.png",
-  "pagani.webp",
-  "aston-martin.png",
-  "Audi-Logo.png",
-  "mini-logo.png",
-  "range-rover.png",
+  { logo: "BMW.png", name: "", link: "" },
+  { logo: "LandRover.png", name: "", link: "" },
+  { logo: "Mercedes.png", name: "", link: "" },
+  { logo: "Bugatti.png", name: "", link: "" },
+  { logo: "ferrari.png", name: "", link: "" },
+  { logo: "mclaren.png", name: "", link: "" },
+  { logo: "lamborghini.png", name: "", link: "" },
+  { logo: "rolls_royce.png", name: "", link: "" },
+  { logo: "JAGUAR.png", name: "", link: "" },
+  { logo: "maybach.png", name: "", link: "" },
+
+  { logo: "Volkswagen-Logo.png", name: "", link: "" },
+  { logo: "PAGANI.png", name: "", link: "" },
+  { logo: "aston-martin.png", name: "", link: "" },
+  { logo: "mini-logo.png", name: "", link: "" },
 ];
 
 const Marquee = () => {
@@ -91,8 +89,8 @@ const Marquee = () => {
                   <Image
                     width={120}
                     height={40}
-                    src={`/brand-logos/${logo}`}
-                    alt={logo.split(".")[0]}
+                    src={`/brand-logos/${logo.logo}`}
+                    alt={logo.name}
                     className="w-full h-full object-contain "
                   />
                 </div>
