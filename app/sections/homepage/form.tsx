@@ -135,7 +135,7 @@ const ContactFormSection = () => {
                 href="#"
                 className="text-gray-500 hover:text-gray-900 transition-colors text-sm"
               >
-                LinkedIn
+                Instagram
               </a>
               <a
                 href="#"
@@ -147,9 +147,9 @@ const ContactFormSection = () => {
 
             {/* Contact Details */}
             <div className="flex flex-wrap justify-between gap-x-6 gap-y-2 text-sm text-gray-600">
-              <span>Call: 963-578-3457</span>
+              <span>Call: +971 56 993 9879</span>
 
-              <span>advanz@example.com</span>
+              <span>info@advanztech.com</span>
             </div>
           </div>
         </div>
