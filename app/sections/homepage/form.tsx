@@ -149,7 +149,7 @@ const ContactFormSection = () => {
             <div className="flex flex-wrap justify-between gap-x-6 gap-y-2 text-sm text-gray-600">
               <span>Call: 963-578-3457</span>
 
-              <span>michael.mitc@example.com</span>
+              <span>advanz@example.com</span>
             </div>
           </div>
         </div>

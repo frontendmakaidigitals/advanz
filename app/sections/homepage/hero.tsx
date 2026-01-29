@@ -1,189 +1,102 @@
 "use client";
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import React, { useState, useEffect, useRef } from "react";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
-import { gsap } from "gsap";
-
-const slidesData = [
-  {
-    img: "/hero/porsche.avif",
-    badge: "/brand-logos/Porsche.png",
-    title: "Porsche",
-    description: [
-      "Expert repair and maintenance for high-performance Porsche vehicles.",
-      "We handle all models with precision and care.",
-    ],
-  },
-  {
-    img: "/hero/bmw.png",
-    badge: "/brand-logos/BMW.png",
-    title: "BMW",
-    description: [
-      "Precision servicing and repairs for all BMW models.",
-      "Keeping your BMW running at peak performance.",
-    ],
-  },
-  {
-    img: "/hero/range-rover.png",
-    badge: "/brand-logos/LandRover.png",
-    title: "Range Rover",
-    description: [
-      "Luxury SUV repairs and performance optimization for Range Rover.",
-      "Specialized care for off-road and premium vehicles.",
-    ],
-  },
-  {
-    img: "/hero/mercedes.png",
-    badge: "/brand-logos/Mercedes.png",
-    title: "Mercedes-Benz",
-    description: [
-      "Reliable servicing and restoration for Mercedes-Benz cars.",
-      "Ensuring luxury and performance with every service.",
-    ],
-  },
-];
-
+import React, { useRef, useEffect } from "react";
+import { useSplitText } from "@/hooks/useSpliText";
+import gsap from "gsap";
 const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  const imageRefs = useRef<HTMLDivElement[]>([]);
-  const badgeRefs = useRef<HTMLDivElement[]>([]);
-  const textRefs = useRef<HTMLDivElement[]>([]);
-
-  const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
-    loop: true,
-    slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
-    },
+  useSplitText({
+    selector: ".split",
+    trigger: sectionRef.current!,
+    start: "top 75%",
+    y: 20,
+    stagger: 0.01,
   });
 
-  // Parallax animation on slide change
   useEffect(() => {
-    imageRefs.current.forEach((img, idx) => {
-      gsap.to(img, {
-        x: (idx - currentSlide) * 80,
-        duration: 0.7,
-        ease: "power2.out",
-      });
+    if (!sectionRef.current || !videoRef.current || !contentRef.current) return;
+
+    // Parallax effect for video - moves slower (upward)
+    const videoParallax = gsap.to(videoRef.current, {
+      yPercent: -5,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+      },
     });
 
-    badgeRefs.current.forEach((badge, idx) => {
-      gsap.to(badge, {
-        x: (idx - currentSlide) * 120,
-        duration: 0.7,
-        ease: "power2.out",
-      });
+    // Parallax effect for text content - moves faster (downward)
+    const contentParallax = gsap.to(contentRef.current, {
+      yPercent: -75,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+      },
     });
 
-    textRefs.current.forEach((txt, idx) => {
-      gsap.to(txt, {
-        x: (idx - currentSlide) * 150, // text moves fastest for depth
-        opacity: idx === currentSlide ? 1 : 1,
-        duration: 0.7,
-        ease: "power2.out",
+    return () => {
+      videoParallax.kill();
+      contentParallax.kill();
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.vars.trigger === sectionRef.current) {
+          trigger.kill();
+        }
       });
-    });
-  }, [currentSlide]);
-
-  // Animate only the first car on page load
-  useEffect(() => {
-    if (imageRefs.current[0]) {
-      gsap.fromTo(
-        imageRefs.current[0],
-        { x: -200, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.5 },
-      );
-    }
+    };
   }, []);
 
   return (
-    <div className="relative w-full h-[650px] bg-white overflow-hidden">
-      <div className="absolute top-24 left-5 container w-full">
-        <h2 className=" font-[500] text-slate-800 font-saotoshi text-xl">
-          Your go-to repair & maintenance service for <br /> your vehicle
-        </h2>
-      </div>
-      <div className="absolute w-full h-[55%] bg-linear-to-t from-black/5 from-5%  inset-0" />
-      <div ref={sliderRef} className="keen-slider h-[90%]">
-        {slidesData.map((slide, idx) => (
-          <div
-            key={idx}
-            className="keen-slider__slide relative w-full flex justify-center items-center h-full"
-          >
-            <div
-              ref={(el) => {
-                if (el) imageRefs.current[idx] = el;
-              }}
-              className="absolute w-full h-full max-h-[400px] bg-contain max-w-4xl mx-auto bg-no-repeat bg-center"
-              style={{
-                backgroundImage: `url(${slide.img})`,
-              }}
-            />
+    <div
+      ref={sectionRef}
+      className="relative w-full h-screen bg-white overflow-hidden"
+    >
+      {/* Background Video */}
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute scale-[1.2] inset-0 w-full h-full object-cover"
+      >
+        <source src="/hero/hero.mp4" type="video/mp4" />
+      </video>
 
-            {/* Badge */}
-            <div className="absolute bottom-7 left-0 w-full">
-              <div className="container flex gap-2 justify-center items-start  ">
-                <div
-                  ref={(el) => {
-                    if (el) badgeRefs.current[idx] = el;
-                  }}
-                  className=" w-10 h-10 bg-contain bg-no-repeat bg-center z-20"
-                  style={{ backgroundImage: `url(${slide.badge})` }}
-                />
-                <div
-                  ref={(el) => {
-                    if (el) textRefs.current[idx] = el;
-                  }}
-                  className="F z-30 max-w-xl"
-                >
-                  <h2 className="text-4xl text-slate-900 tracking-tight font-bold drop-shadow-lg">
-                    {slide.title}
-                  </h2>
-                  {slide.description.map((line, i) => (
-                    <p
-                      key={i}
-                      className="mt-1 text-slate-800 text-lg drop-shadow-md"
-                    >
-                      {line}
-                    </p>
-                  ))}
-                </div>
-                {/* Text */}
-              </div>
-            </div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
+
+      {/* Content */}
+      <div
+        ref={contentRef}
+        className="absolute flex items-start justify-between container z-20 bottom-20 w-full"
+      >
+        <div className="max-w-4xl ">
+          <h1 className="split text-6xl mainHead text-slate-50 font-[600]">
+            Luxury Car Repair & Maintenance Garage in Dubai
+          </h1>
+          <p className="split mt-3 max-w-3xl text-slate-100">
+            Advanz Tech is your trusted place for expert car repair, servicing,
+            and care — from everyday maintenance to advanced diagnostics.
+          </p>
+
+          <div className="w-full flex gap-4 mt-4  items-center">
+            <button className="px-5 text-sm py-2 bg-yellow-600 text-white rounded-full">
+              Book appointment Now
+            </button>
+            <button className="px-5 text-sm py-2 text-slate-100 border hover:bg-yellow-500 hover:text-slate-50 border-slate-400 rounded-full">
+              About us
+            </button>
           </div>
-        ))}
-      </div>
-
-      {/* Left Arrow */}
-      <button
-        className="absolute top-1/2 left-5 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition z-40"
-        onClick={() => slider?.current?.next()}
-      >
-        <ArrowLeft className="w-6 h-6" />
-      </button>
-
-      {/* Right Arrow */}
-      <button
-        className="absolute top-1/2 right-5 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition z-40"
-        onClick={() => slider?.current?.prev()}
-      >
-        <ArrowRight className="w-6 h-6" />
-      </button>
-
-      {/* Navigation Dots */}
-      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2 z-40">
-        {slidesData.map((_, idx) => (
-          <button
-            key={idx}
-            className={`w-2 h-2 rounded-full ${
-              currentSlide === idx ? "bg-black w-6" : "bg-gray-400"
-            }`}
-            onClick={() => slider?.current?.moveToIdx(idx)}
-          ></button>
-        ))}
+        </div>
       </div>
     </div>
   );

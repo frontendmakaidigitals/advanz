@@ -13,10 +13,10 @@ interface LiquidGlassCardProps {
   height?: string;
   expandedWidth?: string;
   expandedHeight?: string;
-  blurIntensity?: "sm" | "md" | "lg" | "xl";
+  blurIntensity?: "none" | "sm" | "md" | "lg" | "xl";
+  glowIntensity?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
   shadowIntensity?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
   borderRadius?: string;
-  glowIntensity?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
 }
 
 export const LiquidGlassCard = ({
@@ -46,6 +46,7 @@ export const LiquidGlassCard = ({
   };
 
   const blurClasses = {
+    none: "",
     sm: "backdrop-blur-xs",
     md: "backdrop-blur-md",
     lg: "backdrop-blur-lg",
@@ -64,6 +65,7 @@ export const LiquidGlassCard = ({
   };
 
   const glowStyles = {
+    none: "",
     none: "0 4px 4px rgba(0, 0, 0, 0.05), 0 0 12px rgba(0, 0, 0, 0.05)",
     xs: "0 4px 4px rgba(0, 0, 0, 0.15), 0 0 12px rgba(0, 0, 0, 0.08), 0 0 16px rgba(255, 255, 255, 0.05)",
     sm: "0 4px 4px rgba(0, 0, 0, 0.15), 0 0 12px rgba(0, 0, 0, 0.08), 0 0 24px rgba(255, 255, 255, 0.1)",
@@ -172,7 +174,7 @@ export const LiquidGlassCard = ({
           className={`absolute inset-0 ${blurClasses[blurIntensity]} z-0`}
           style={{
             borderRadius,
-            filter: "url(#glass-blur)",
+          filter: blurIntensity !== "none" ? "url(#glass-blur)" : "none",
           }}
         />
 

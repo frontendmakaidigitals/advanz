@@ -78,16 +78,16 @@ const Nav = () => {
       {/* Toggle Button */}
       <button
         onClick={() => setOpen((p) => !p)}
-        className="  hover:bg-slate-100 cursor-pointer size-10 flex flex-col items-center justify-center rounded-full relative z-60"
+        className="  hover:bg-slate-700 cursor-pointer size-10 flex flex-col items-center justify-center rounded-full relative z-60"
       >
         <div
           ref={line1}
-          className="w-6 h-0.5 bg-black"
+          className="w-6 h-0.5 bg-slate-50"
           style={{ transformOrigin: "center" }}
         />
         <div
           ref={line2}
-          className="w-6 h-0.5 bg-black mt-1"
+          className="w-6 h-0.5 bg-slate-50 mt-1"
           style={{ transformOrigin: "center" }}
         />
       </button>
