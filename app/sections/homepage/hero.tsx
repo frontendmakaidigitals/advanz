@@ -14,7 +14,7 @@ const Hero = () => {
     trigger: sectionRef.current!,
     start: "top 75%",
     y: 20,
-    stagger: width < 768 ? 0.01 : 0.03,
+    stagger: width < 768 ? 0.01 : 0.02,
     type: "chars, lines",
   });
   useSplitText({
@@ -22,7 +22,7 @@ const Hero = () => {
     trigger: sectionRef.current!,
     start: "top 75%",
     y: 20,
-    stagger: width < 768 ? 0.002 : 0.01,
+    stagger: width < 768 ? 0.002 : 0.004,
     type: "chars, lines",
     delay: 1,
   });

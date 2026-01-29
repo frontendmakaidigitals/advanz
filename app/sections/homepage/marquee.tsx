@@ -8,57 +8,99 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const brands = [
-  { logo: "BMW.png", name: "", link: "" },
-  { logo: "LandRover.png", name: "", link: "" },
-  { logo: "Mercedes.png", name: "", link: "" },
-  { logo: "Bugatti.png", name: "", link: "" },
-  { logo: "ferrari.png", name: "", link: "" },
-  { logo: "mclaren.png", name: "", link: "" },
-  { logo: "lamborghini.png", name: "", link: "" },
-  { logo: "rolls_royce.png", name: "", link: "" },
-  { logo: "JAGUAR.png", name: "", link: "" },
-  { logo: "maybach.png", name: "", link: "" },
-
-  { logo: "Volkswagen-Logo.png", name: "", link: "" },
-  { logo: "PAGANI.png", name: "", link: "" },
-  { logo: "aston-martin.png", name: "", link: "" },
-  { logo: "mini-logo.png", name: "", link: "" },
+  { logo: "BMW.png", name: "BMW" },
+  { logo: "LandRover.png", name: "Land Rover" },
+  { logo: "Mercedes.png", name: "Mercedes" },
+  { logo: "Bugatti.png", name: "Bugatti" },
+  { logo: "ferrari.png", name: "Ferrari" },
+  { logo: "mclaren.png", name: "McLaren" },
+  { logo: "lamborghini.png", name: "Lamborghini" },
+  { logo: "rolls_royce.png", name: "Rolls Royce" },
+  { logo: "JAGUAR.png", name: "Jaguar" },
+  { logo: "maybach.png", name: "Maybach" },
+  { logo: "Volkswagen-Logo.png", name: "Volkswagen" },
+  { logo: "PAGANI.png", name: "Pagani" },
+  { logo: "aston-martin.png", name: "Aston Martin" },
+  { logo: "mini-logo.png", name: "Mini" },
 ];
 
 const Marquee = () => {
-  const marqueeRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const boxesRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const marquee = marqueeRef.current;
-    if (!marquee) return;
+    const boxes = itemRefs.current.filter(Boolean) as HTMLDivElement[];
+    if (!boxes.length || !boxesRef.current) return;
 
-    // Duplicate logos for seamless looping
-    marquee.innerHTML += marquee.innerHTML;
+    // Calculate dimensions with gap
+    const gap = 64; // 4rem gap between items
+    const boxWidth = 160 + gap; // box width + gap
+    const wrapWidth = boxes.length * boxWidth;
 
-    // GSAP animation for horizontal marquee
-    const marqueeAnim = gsap.to(marquee, {
-      xPercent: -50,
-      ease: "none",
-      duration: 7,
-      repeat: -1,
-      paused: true, // start paused, will play on ScrollTrigger
+    // Set initial positions
+    gsap.set(boxes, {
+      x: (i) => i * boxWidth,
     });
 
-    // ScrollTrigger to play/pause based on visibility
-    ScrollTrigger.create({
+    // Animation variables
+    const additionalX = { val: 0 };
+    let offset = 0;
+    let additionalXAnim: gsap.core.Tween | null = null;
+
+    // Wrap function for seamless looping
+    function wrap(value: number, min: number, max: number) {
+      const v = value - min;
+      const r = max - min;
+      return ((r + (v % r)) % r) + min;
+    }
+
+    // Create infinite scroll animation for each box
+    const timelines: gsap.core.Tween[] = [];
+
+    boxes.forEach((item) => {
+      const tl = gsap.to(item, {
+        x: `-=${wrapWidth}`,
+        duration: 40,
+        repeat: -1,
+        ease: "none",
+        modifiers: {
+          x: gsap.utils.unitize((x) => {
+            offset += additionalX.val;
+            const parsedX = parseFloat(x as string) + offset;
+            return wrap(parsedX, 0, wrapWidth);
+          }),
+        },
+      });
+      timelines.push(tl);
+    });
+
+    // ScrollTrigger for velocity-based speed
+    const scrollTrigger = ScrollTrigger.create({
       trigger: containerRef.current,
-      start: "top bottom", // when the top of the container hits bottom of viewport
-      end: "bottom top", // when bottom of container leaves top of viewport
-      onEnter: () => marqueeAnim.play(),
-      onEnterBack: () => marqueeAnim.play(),
-      onLeave: () => marqueeAnim.pause(),
-      onLeaveBack: () => marqueeAnim.pause(),
+      start: "top bottom",
+      end: "bottom top",
+      onUpdate: function (self) {
+        const velocity = self.getVelocity();
+
+        if (Math.abs(velocity) > 0) {
+          if (additionalXAnim) additionalXAnim.kill();
+
+          // Adjust speed based on scroll velocity
+          additionalX.val = -velocity / 500;
+          additionalXAnim = gsap.to(additionalX, {
+            val: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        }
+      },
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-      marqueeAnim.kill();
+      scrollTrigger.kill();
+      timelines.forEach((tl) => tl.kill());
+      if (additionalXAnim) additionalXAnim.kill();
     };
   }, []);
 
@@ -76,23 +118,26 @@ const Marquee = () => {
           </h2>
 
           {/* Marquee Container */}
-          <div className="overflow-hidden relative flex-1">
-            <div
-              ref={marqueeRef}
-              className="flex whitespace-nowrap items-center gap-16"
-            >
-              {brands.map((logo, idx) => (
+          <div className="overflow-hidden relative flex-1 h-24">
+            <div ref={boxesRef} className="relative h-full">
+              {brands.map((brand, idx) => (
                 <div
                   key={idx}
-                  className="flex-shrink-0 w-40 h-24 flex items-center justify-center transition-transform duration-300 hover:scale-110"
+                  ref={(el) => {
+                    itemRefs.current[idx] = el;
+                  }}
+                  className="absolute left-0 w-40 h-24 flex items-center justify-center will-change-transform"
+                  style={{ top: 0 }}
                 >
-                  <Image
-                    width={120}
-                    height={40}
-                    src={`/brand-logos/${logo.logo}`}
-                    alt={logo.name}
-                    className="w-full h-full object-contain "
-                  />
+                  <div className="relative w-full h-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
+                    <Image
+                      width={160}
+                      height={96}
+                      src={`/brand-logos/${brand.logo}`}
+                      alt={brand.name}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
                 </div>
               ))}
             </div>

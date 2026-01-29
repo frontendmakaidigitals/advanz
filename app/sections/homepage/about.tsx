@@ -171,11 +171,13 @@ const About = () => {
           {/* Text Content */}
           <div ref={textRef} className="space-y-6 will-change-transform">
             <h2 className="text-5xl lg:text-6xl tracking-tighter text-center font-bold leading-tight">
-              <span className="inline-block text-black ">Best Car Repair</span>
+              <span className="inline-block text-black ">
+                Automotive Repair Garage
+              </span>
               <br />
-              <span className="inline-block  text-black ">Garage in Dubai</span>
+              <span className="inline-block  text-black "> in Dubai</span>
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed text-center max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
               At Advanz Tech, we provide a complete range of professional car
               repair, maintenance, and diagnostic services designed to keep your
               vehicle running safely and smoothly.
