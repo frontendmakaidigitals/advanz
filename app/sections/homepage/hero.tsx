@@ -1,19 +1,30 @@
 "use client";
-
+import { useIsMobile } from "@/hooks/useMobile";
 import React, { useRef, useEffect } from "react";
 import { useSplitText } from "@/hooks/useSpliText";
 import gsap from "gsap";
+import useWindowSize from "@/hooks/useWindowSize";
 const Hero = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-
+  const { width } = useWindowSize();
   useSplitText({
     selector: ".split",
     trigger: sectionRef.current!,
     start: "top 75%",
     y: 20,
-    stagger: 0.01,
+    stagger: width < 768 ? 0.01 : 0.03,
+    type: "chars, lines",
+  });
+  useSplitText({
+    selector: ".split2",
+    trigger: sectionRef.current!,
+    start: "top 75%",
+    y: 20,
+    stagger: width < 768 ? 0.002 : 0.01,
+    type: "chars, lines",
+    delay: 1,
   });
 
   useEffect(() => {
@@ -33,7 +44,7 @@ const Hero = () => {
 
     // Parallax effect for text content - moves faster (downward)
     const contentParallax = gsap.to(contentRef.current, {
-      yPercent: -75,
+      yPercent: width < 768 ? -30 : -75,
       ease: "none",
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -72,18 +83,18 @@ const Hero = () => {
       </video>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/30 to-transparent" />
 
       {/* Content */}
       <div
         ref={contentRef}
-        className="absolute flex items-start justify-between container z-20 bottom-20 w-full"
+        className="absolute flex items-start justify-between container z-20 bottom-20 lg:bottom-20 w-full"
       >
         <div className="max-w-4xl ">
-          <h1 className="split text-6xl mainHead text-slate-50 font-[600]">
+          <h1 className="split text-5xl lg:text-6xl mainHead text-slate-50 font-[600]">
             Luxury Car Repair & Maintenance Garage in Dubai
           </h1>
-          <p className="split mt-3 max-w-3xl text-slate-100">
+          <p className="split2 mt-3 max-w-3xl text-slate-100">
             Advanz Tech is your trusted place for expert car repair, servicing,
             and care — from everyday maintenance to advanced diagnostics.
           </p>

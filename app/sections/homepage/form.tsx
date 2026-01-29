@@ -48,7 +48,7 @@ const ContactFormSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center bg-white py-20"
+      className="relative lg:min-h-screen flex items-center bg-white lg:py-20"
     >
       <div className="container max-w-7xl grid !px-0 grid-cols-1 lg:grid-cols-2 overflow-hidden items-stretch relative z-10">
         {/* Left Content - Image */}

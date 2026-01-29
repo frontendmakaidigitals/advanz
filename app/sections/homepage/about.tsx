@@ -166,20 +166,14 @@ const About = () => {
       </div>
 
       {/* Content Section */}
-      <div
-        ref={contentRef}
-        className="container mx-auto px-6 -mt-32 relative z-10"
-      >
-        <div className=" gap-16 items-start">
+      <div ref={contentRef} className="container -mt-32 relative z-10">
+        <div className="">
           {/* Text Content */}
           <div ref={textRef} className="space-y-6 will-change-transform">
-            <h2 className="text-5xl lg:text-6xl text-center font-bold leading-tight">
-              <span className="inline-block text-black ">
-                Automotive Car Repair
-              </span>
+            <h2 className="text-5xl lg:text-6xl tracking-tighter text-center font-bold leading-tight">
+              <span className="inline-block text-black ">Best Car Repair</span>
               <br />
               <span className="inline-block  text-black ">Garage in Dubai</span>
-              <br />
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed text-center max-w-2xl mx-auto">
               At Advanz Tech, we provide a complete range of professional car
@@ -190,7 +184,7 @@ const About = () => {
         </div>
 
         {/* Bottom Image with Parallax */}
-        <div className="grid grid-cols-[1.1fr_.8fr] gap-8 mt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_.8fr] gap-8 mt-10">
           <div
             ref={bottomImageContainerRef}
             className="  relative h-[400px] lg:h-[600px] will-change-transform overflow-hidden rounded shadow-2xl"

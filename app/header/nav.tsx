@@ -74,7 +74,7 @@ const Nav = () => {
   }, [open]);
 
   return (
-    <div className="hidden lg:block">
+    <div className="">
       {/* Toggle Button */}
       <button
         onClick={() => setOpen((p) => !p)}
