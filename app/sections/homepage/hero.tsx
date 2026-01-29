@@ -100,6 +100,11 @@ const Hero = () => {
 
   return (
     <div className="relative w-full h-[650px] bg-white overflow-hidden">
+      <div className="absolute top-24 left-5 container w-full">
+        <h2 className=" font-[500] text-slate-800 font-saotoshi text-xl">
+          Your go-to repair & maintenance service for <br /> your vehicle
+        </h2>
+      </div>
       <div className="absolute w-full h-[55%] bg-linear-to-t from-black/5 from-5%  inset-0" />
       <div ref={sliderRef} className="keen-slider h-[90%]">
         {slidesData.map((slide, idx) => (

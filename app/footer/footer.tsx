@@ -13,37 +13,12 @@ const Footer = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Line reveal
-      gsap.fromTo(
-        lineRef.current,
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top 85%",
-          },
-        },
-      );
-
-      // Footer items stagger
-      gsap.fromTo(
-        itemsRef.current,
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top 80%",
-          },
-        },
-      );
+      ScrollTrigger.create({
+        trigger: ".footer",
+        pin: true,
+        start: "bottom bottom",
+        end: "+=100%",
+      });
     }, footerRef);
 
     return () => ctx.revert();

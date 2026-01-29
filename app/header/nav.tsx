@@ -118,7 +118,6 @@ const Nav = () => {
             </button>
             <div className="mt-7 space-y-5">
               <p className="text-5xl">Insight</p>
-              <p className="text-5xl">Contact</p>
               <p className="text-lg">Privacy policy</p>
               <p className="text-lg">Legal</p>
             </div>

@@ -55,8 +55,8 @@ const NavButton = () => {
   }, []);
 
   return (
-    <div className="relative inline-block">
-      <button className="relative px-5 h-10 text-sm rounded-full cursor-pointer overflow-hidden border border-yellow-900 flex items-center justify-center">
+    <div className="relative lg:inline-block hidden">
+      <button className="relative px-5 h-10 text-sm rounded-full cursor-pointer overflow-hidden border border-black/30 bg-slate-100 flex items-center justify-center">
         {/* SVG overlay */}
         <svg
           className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"

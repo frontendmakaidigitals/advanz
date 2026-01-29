@@ -7,14 +7,26 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const imagesRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
+    /* SECTION COLOR TOGGLE */
+    gsap.to(sectionRef.current, {
+      backgroundColor: "#000",
+      color: "#000",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "center center",
+        end: "center center",
+        toggleActions: "play reverse play reverse",
+      },
+    });
+
     cardsRef.current.forEach((card, idx) => {
       if (!card) return;
 
-      // Card floating effect
       gsap.to(card, {
         y: idx % 2 === 0 ? -60 : -40,
         ease: "none",
@@ -26,7 +38,6 @@ const Services = () => {
         },
       });
 
-      // Image parallax effect
       const image = imagesRef.current[idx];
       if (!image) return;
 
@@ -42,18 +53,16 @@ const Services = () => {
       });
     });
 
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
+    return () => ScrollTrigger.getAll().forEach((st) => st.kill());
   }, []);
 
   return (
-    <section className="bg-black relative py-32">
+    <section ref={sectionRef} className="bg-black relative py-32">
       <div className="container mx-auto space-y-32 max-w-6xl">
         {[
           {
             label: "Workshop Services",
-            img: "DSC02024.jpg",
+            img: "workshop.jpg",
             desc: "Comprehensive mechanical diagnostics and repairs carried out by certified technicians using advanced tools and manufacturer-approved processes.",
             features: [
               "Computerized diagnostics",
@@ -64,7 +73,7 @@ const Services = () => {
           },
           {
             label: "Body Shop Services",
-            img: "DSC02013.jpg",
+            img: "body-shop-repair.webp",
             desc: "Precision body repair and paint refinement restoring your vehicle’s structure, finish, and original factory standards.",
             features: [
               "Accident & collision repair",
@@ -75,7 +84,7 @@ const Services = () => {
           },
           {
             label: "Spare Parts",
-            img: "DSC02035.jpg",
+            img: "spare-parts.jpg",
             desc: "Genuine and OEM-grade spare parts ensuring perfect fitment, long-term reliability, and uncompromised performance.",
             features: [
               "Genuine & OEM components",
@@ -86,7 +95,7 @@ const Services = () => {
           },
           {
             label: "Car Programming",
-            img: "DSC02043.jpg",
+            img: "car-programming.webp",
             desc: "Advanced vehicle coding, module programming, and software calibration tailored to modern automotive systems.",
             features: [
               "ECU & module coding",
@@ -97,7 +106,7 @@ const Services = () => {
           },
           {
             label: "Recovery & Assistance",
-            img: "DSC02082.jpg",
+            img: "car-tow.jpg",
             desc: "24/7 roadside recovery and emergency assistance delivering fast, secure transport and complete peace of mind.",
             features: [
               "24/7 roadside assistance",
@@ -129,7 +138,7 @@ const Services = () => {
                 >
                   <Image
                     fill
-                    src={`/brand-images/${service.img}`}
+                    src={`/service/${service.img}`}
                     alt={`Service image ${service}`}
                     className="object-cover scale-[1.05]"
                     loading="lazy"

@@ -27,6 +27,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=ranade@100,300,400,500,700&f[]=cabinet-grotesk@100,200,300,400,500,700,800,900&f[]=stardom@400&display=swap"
+          rel="stylesheet"
+        ></link>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

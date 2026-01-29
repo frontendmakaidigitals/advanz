@@ -20,8 +20,8 @@ const Header = () => {
         className="py-2 shadow-none!"
         draggable={false}
       >
-        <div className="container relative z-60 flex justify-between items-center">
-          <Logo />
+        <div className="container relative z-70 flex justify-between items-center">
+          <Logo className="relative z-60" />
           <div className="flex items-center gap-4 relative ">
             <Nav />
             <NavButton />
