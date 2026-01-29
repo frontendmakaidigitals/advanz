@@ -87,7 +87,7 @@ const Marquee = () => {
           if (additionalXAnim) additionalXAnim.kill();
 
           // Adjust speed based on scroll velocity
-          additionalX.val = -velocity / 500;
+          additionalX.val = -velocity / 1000;
           additionalXAnim = gsap.to(additionalX, {
             val: 0,
             duration: 0.8,

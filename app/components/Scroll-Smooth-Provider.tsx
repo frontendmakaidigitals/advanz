@@ -14,7 +14,7 @@ export default function ScrollSmootherProvider() {
     const smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: 0.8,
+      smooth: 0.9,
       effects: true,
       normalizeScroll: true,
       ignoreMobileResize: true,

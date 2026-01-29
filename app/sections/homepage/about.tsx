@@ -11,7 +11,9 @@ const About = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const sideImageRef = useRef<HTMLImageElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const bottomImageContainerRef = useRef<HTMLDivElement>(null);
+  const bottomImageContainerRef = useRef<HTMLImageElement>(null);
+  const statsContainerRef = useRef<HTMLDivElement>(null);
+
   const stats = [
     {
       title: "500+ Projects",
@@ -34,6 +36,7 @@ const About = () => {
         "Our team is available round-the-clock to help you with any project needs.",
     },
   ];
+
   useEffect(() => {
     const image = imageRef.current;
     const content = contentRef.current;
@@ -41,15 +44,9 @@ const About = () => {
     const sideImage = sideImageRef.current;
     const section = sectionRef.current;
     const bottomImageContainer = bottomImageContainerRef.current;
+    const statsContainer = statsContainerRef.current;
 
-    if (
-      !image ||
-      !content ||
-      !section ||
-      !text ||
-      !sideImage ||
-      !bottomImageContainer
-    )
+    if (!image || !content || !section || !text || !bottomImageContainer)
       return;
 
     // Parallax effect for the hero image
@@ -77,17 +74,19 @@ const About = () => {
       },
     });
 
-    // Strong parallax for side image
-    gsap.to(sideImage, {
-      y: -250,
-      ease: "none",
-      scrollTrigger: {
-        trigger: content,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 0.5,
-      },
-    });
+    // Strong parallax for side image (if exists)
+    if (sideImage) {
+      gsap.to(sideImage, {
+        y: -250,
+        ease: "none",
+        scrollTrigger: {
+          trigger: content,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.5,
+        },
+      });
+    }
 
     // Parallax for bottom image container
     gsap.to(bottomImageContainer, {
@@ -113,32 +112,28 @@ const About = () => {
       },
     });
 
+    // Animate stats cards
+    if (statsContainer) {
+      const cards = statsContainer.querySelectorAll(".stats-card");
+
+      gsap.from(cards, {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        ease: "power2.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: statsContainer,
+          start: "top 85%",
+          end: "top 60%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+
+    // Cleanup
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
-
-  useEffect(() => {
-    const cards = Array.from(
-      document.querySelectorAll("#stats-card"),
-    ) as HTMLDivElement[];
-
-    // Animate each card from bottom to top with stagger
-    gsap.from(cards, {
-      opacity: 0,
-      y: 50,
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: 0.2, // cascade effect
-      scrollTrigger: {
-        trigger: cards[0].parentElement, // the grid container
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
@@ -157,6 +152,7 @@ const About = () => {
             alt="Road background"
             className="w-full h-full object-cover scale-[1.02]"
             loading="eager"
+            priority
           />
         </div>
         {/* Gradient Overlay */}
@@ -187,25 +183,27 @@ const About = () => {
 
         {/* Bottom Image with Parallax */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_.8fr] gap-8 mt-10">
-          <div
-            ref={bottomImageContainerRef}
-            className="  relative h-[400px] lg:h-[600px] will-change-transform overflow-hidden rounded shadow-2xl"
-          >
+          <div className="relative h-[400px] lg:h-[600px] will-change-transform overflow-hidden rounded shadow-2xl">
             <Image
+              ref={bottomImageContainerRef}
               src="/brand-images/DSC02019.jpg"
               alt="Luxury car interior"
-              className="w-full h-full object-cover "
+              className="w-full h-full object-cover scale-[1.5]"
               fill
               loading="lazy"
             />
           </div>
 
-          <div className="container mx-auto px-6 grid grid-cols-1  gap-8">
+          <div
+            ref={statsContainerRef}
+            className="container mx-auto px-6 grid grid-cols-1 gap-8"
+          >
             {stats.map((stat, idx) => (
               <div
                 key={idx}
-                id="stats-card"
-                className={`bg-white py-6  transition-shadow duration-300 ${idx === stats.length - 1 ? "" : "border-b"}`}
+                className={`stats-card bg-white py-6 transition-shadow duration-300 ${
+                  idx === stats.length - 1 ? "" : "border-b"
+                }`}
               >
                 <h3 className="text-3xl font-bold mb-2 text-gray-900">
                   {stat.title}
