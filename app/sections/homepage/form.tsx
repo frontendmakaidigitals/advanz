@@ -1,109 +1,158 @@
 "use client";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { useEffect } from "react";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Facebook, Linkedin, Twitter } from "lucide-react";
+import Image from "next/image";
 
-const services = [
-  "Workshop Services",
-  "Body Shop Services",
-  "Spare Parts",
-  "Car Programming",
-  "Recovery & Assistance",
-];
-
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 const ContactFormSection = () => {
   const textRef = useRef<HTMLDivElement>(null);
-  const fieldsRef = useRef<HTMLDivElement[]>([]);
-
+  const imageRef = useRef<HTMLImageElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const handleSelectOpen = (open: boolean) => {
     const smoother = ScrollSmoother.get();
     if (!smoother) return;
 
     smoother.paused(open);
   };
+  useEffect(() => {
+    if (!imageRef.current || !sectionRef.current) return;
+
+    // Create parallax effect for the image
+    const parallaxTl = gsap.to(imageRef.current, {
+      y: -60,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top bottom", // When section top hits viewport bottom
+        end: "bottom top", // When section bottom hits viewport top
+        scrub: 1, // Smooth scrubbing effect
+      },
+    });
+
+    return () => {
+      parallaxTl.kill();
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.vars.trigger === sectionRef.current) {
+          trigger.kill();
+        }
+      });
+    };
+  }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center bg-white py-28 overflow-hidden">
-      <div className="container max-w-5xl grid grid-cols-1 lg:grid-cols-2 items-start relative z-10">
-        {/* Left Content */}
-        <div
-          ref={textRef}
-          className="relative flex flex-col justify-end h-full p-6 min-h-[420px]"
-        >
-          <img
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center bg-white py-20"
+    >
+      <div className="container max-w-7xl grid !px-0 grid-cols-1 lg:grid-cols-2 overflow-hidden items-stretch relative z-10">
+        {/* Left Content - Image */}
+        <div className="  flex flex-col justify-end h-full ">
+          <Image
+            ref={imageRef}
             src="https://images.pexels.com/photos/16510639/pexels-photo-16510639.jpeg"
             alt="Contact"
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            className=" w-full h-full object-cover scale-[1.2]"
           />
-          <div className="absolute inset-0 bg-black/20" />
-
-          <h2 className="text-4xl relative z-10 font-bold tracking-tight text-white mb-3">
-            Get in Touch
-          </h2>
-          <p className="relative z-10 text-gray-200 max-w-sm">
-            Have questions or want to book a service? Fill out the form and our
-            team will get back to you promptly.
-          </p>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-black/10" />
         </div>
 
-        {/* Form */}
-        <form className="space-y-4 bg-neutral-50 p-6 border border-slate-200 shadow-sm">
-          {["Name", "Email", "Phone", "Service", "Message"].map((label, i) => (
-            <div
-              key={i}
-              ref={(el) => {
-                if (el) fieldsRef.current[i] = el;
-              }}
-              className="flex flex-col"
-            >
-              <label className="mb-2 font-medium text-slate-700">{label}</label>
+        {/* Right Content - Form */}
+        <div className="bg-white/90 backdrop-blur-lg relative z-10 p-8 sm:p-12 lg:p-16 flex flex-col justify-between">
+          {/* Header */}
+          <div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-4">
+              Contact Us
+            </h2>
+            <p className="text-gray-600 text-base sm:text-lg mb-10 max-w-md">
+              Have questions or need assistance? Reach out to our team — we're
+              here to help you find the right solutions quickly and easily.
+            </p>
 
-              {/* Message */}
-              {label === "Message" ? (
-                <textarea
-                  placeholder="Enter message"
-                  rows={5}
-                  className="px-4 py-2 resize-none rounded-md bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                />
-              ) : label === "Service" ? (
-                /* Select Service */
-                <Select onOpenChange={handleSelectOpen}>
-                  <SelectTrigger className="bg-white border border-slate-300 focus:ring-2 focus:ring-yellow-400 w-full h-11!">
-                    <SelectValue placeholder="Select a service" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {services.map((service) => (
-                      <SelectItem key={service} value={service}>
-                        {service}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              ) : (
-                /* Inputs */
+            {/* Form Fields */}
+            <form className="space-y-6">
+              {/* Name Field */}
+              <div>
                 <input
-                  type={label === "Phone" ? "tel" : "text"}
-                  placeholder={`Enter ${label.toLowerCase()}`}
-                  className="px-4 py-2 rounded-md bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  type="text"
+                  placeholder="Name"
+                  className="w-full py-3 px-1 text-gray-900 placeholder:text-gray-400 bg-transparent border-b border-gray-300 focus:border-gray-900 focus:outline-none transition-colors"
                 />
-              )}
-            </div>
-          ))}
+              </div>
 
-          <button
-            type="submit"
-            className="mt-2 px-6 py-2 bg-yellow-500 hover:bg-yellow-600 transition rounded-full font-semibold text-black"
-          >
-            Submit
-          </button>
-        </form>
+              {/* Email Field */}
+              <div>
+                <input
+                  type="phone"
+                  placeholder="+97 1235 6789"
+                  className="w-full py-3 px-1 text-gray-900 placeholder:text-gray-400 bg-transparent border-b border-gray-300 focus:border-gray-900 focus:outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  placeholder="temptemtemp@gmail.com"
+                  className="w-full py-3 px-1 text-gray-900 placeholder:text-gray-400 bg-transparent border-b border-gray-300 focus:border-gray-900 focus:outline-none transition-colors"
+                />
+              </div>
+
+              {/* Message Field */}
+              <div>
+                <textarea
+                  placeholder="Your question"
+                  rows={1}
+                  className="w-full py-3 px-1 text-gray-900 placeholder:text-gray-400 bg-transparent border-b border-gray-300 focus:border-gray-900 focus:outline-none transition-colors resize-none"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="mt-6 px-8 py-3 bg-yellow-500 text-white hover:bg-yellow-600 transition-colors font-medium"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          {/* Footer - Social & Contact Info */}
+          <div className="mt-16 pt-8 border-t border-gray-200">
+            {/* Social Links */}
+            <div className="flex gap-6 mb-6">
+              <a
+                href="#"
+                className="text-gray-500 hover:text-gray-900 transition-colors text-sm"
+              >
+                Facebook
+              </a>
+              <a
+                href="#"
+                className="text-gray-500 hover:text-gray-900 transition-colors text-sm"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="#"
+                className="text-gray-500 hover:text-gray-900 transition-colors text-sm"
+              >
+                Twitter
+              </a>
+            </div>
+
+            {/* Contact Details */}
+            <div className="flex flex-wrap justify-between gap-x-6 gap-y-2 text-sm text-gray-600">
+              <span>Call: 963-578-3457</span>
+
+              <span>michael.mitc@example.com</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -3,6 +3,8 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import { Circle } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,82 +70,55 @@ const AboutUs = () => {
   return (
     <section className="text-black">
       {/* Hero */}
-      <div className="min-h-[70vh] flex items-center px-6 md:px-20">
-        <div className="max-w-5xl">
+      <div className="min-h-[85vh] relative text-white flex items-end pb-16 px-6 md:px-20">
+        <Image
+          src={
+            "https://images.pexels.com/photos/6872595/pexels-photo-6872595.jpeg"
+          }
+          alt={""}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 w-full h-full bg-black/50" />
+        <div className="max-w-5xl relative z-10">
+          <span className="text-white flex items-center gap-1 mb-1">
+            <Circle fill="white" stroke={"white"} className="size-2" />
+            About us
+          </span>
           <h1
             ref={headingRef}
-            className="text-5xl md:text-7xl font-bold tracking-tight mb-6"
+            className="text-5xl md:text-7xl font-bold tracking-tight mb-4"
           >
             Driven by Precision.
             <br />
             Defined by Trust.
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl">
+          <p className="text-slate-100  text-lg max-w-2xl">
             Premium automotive service and performance solutions for luxury
             vehicles — built on craftsmanship, integrity, and attention to
             detail.
           </p>
+          <button className="px-5 py-2 rounded-lg bg-yellow-500 text-black mt-3">
+            Book a service now
+          </button>
         </div>
       </div>
 
       {/* Divider */}
       <div className="h-px w-full bg-gradient-to-r from-yellow-500/70 to-transparent mb-24" />
 
-      {/* Content sections */}
-      <div className="space-y-32 px-6 md:px-20 pb-32">
-        {sections.map((item, idx) => (
-          <div
-            key={idx}
-            ref={(el) => {
-              if (el) sectionRefs.current[idx] = el;
-            }}
-            className="max-w-4xl"
-          >
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-              {item.title}
-            </h2>
-            <p className="text-gray-400 text-lg leading-relaxed">{item.text}</p>
-          </div>
-        ))}
-
-        {/* Stats */}
-        <div
-          ref={(el) => {
-            if (el) sectionRefs.current[sections.length] = el;
-          }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl"
-        >
-          {[
-            { value: "500+", label: "Vehicles Serviced" },
-            { value: "10+", label: "Years of Expertise" },
-            { value: "100%", label: "Genuine Parts" },
-          ].map((stat, i) => (
-            <div key={i}>
-              <p className="text-5xl font-bold text-yellow-400 mb-2">
-                {stat.value}
-              </p>
-              <p className="text-gray-400">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div
-          ref={(el) => {
-            if (el) sectionRefs.current[sections.length + 1] = el;
-          }}
-          className="max-w-4xl"
-        >
-          <h2 className="text-4xl font-semibold mb-4">
-            Experience the Difference
-          </h2>
-          <p className="text-gray-400 mb-8 max-w-2xl">
-            Whether it’s routine maintenance or performance optimization, we
-            treat every vehicle with the respect it deserves.
+      <div>
+        <div>
+          <h2>Our Story</h2>
+          <p>
+            We started with a simple belief — luxury vehicles deserve expert
+            care, not shortcuts. What began as a passion for precision has
+            evolved into a trusted destination for premium automotive service.
           </p>
-          <button className="bg-yellow-400 text-black px-6 py-3 rounded font-medium hover:bg-yellow-300 transition">
-            Book a Service
-          </button>
+
+          <div>
+            <Image src={""} alt={""} className="" />
+          </div>
         </div>
       </div>
     </section>

@@ -46,7 +46,7 @@ const slidesData = [
 ];
 
 const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(slidesData.length - 1);
 
   const imageRefs = useRef<HTMLDivElement[]>([]);
   const badgeRefs = useRef<HTMLDivElement[]>([]);
@@ -89,9 +89,9 @@ const Hero = () => {
 
   // Animate only the first car on page load
   useEffect(() => {
-    if (imageRefs.current[0]) {
+    if (imageRefs.current[slidesData.length - 1]) {
       gsap.fromTo(
-        imageRefs.current[0],
+        imageRefs.current[slidesData.length - 1],
         { x: -200, opacity: 0 },
         { x: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.5 },
       );
@@ -160,7 +160,7 @@ const Hero = () => {
       {/* Left Arrow */}
       <button
         className="absolute top-1/2 left-5 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition z-40"
-        onClick={() => slider?.current?.prev()}
+        onClick={() => slider?.current?.next()}
       >
         <ArrowLeft className="w-6 h-6" />
       </button>
@@ -168,7 +168,7 @@ const Hero = () => {
       {/* Right Arrow */}
       <button
         className="absolute top-1/2 right-5 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition z-40"
-        onClick={() => slider?.current?.next()}
+        onClick={() => slider?.current?.prev()}
       >
         <ArrowRight className="w-6 h-6" />
       </button>

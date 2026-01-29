@@ -7,7 +7,7 @@ const Logo = ({ className }: { className?: string }) => {
       alt="Logo"
       width={100}
       height={100}
-      className={className}
+      className={`drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)] ${className}`}
     />
   );
 };
