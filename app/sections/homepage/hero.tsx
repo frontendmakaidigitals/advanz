@@ -46,7 +46,7 @@ const slidesData = [
 ];
 
 const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(slidesData.length - 1);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const imageRefs = useRef<HTMLDivElement[]>([]);
   const badgeRefs = useRef<HTMLDivElement[]>([]);
@@ -89,9 +89,9 @@ const Hero = () => {
 
   // Animate only the first car on page load
   useEffect(() => {
-    if (imageRefs.current[slidesData.length - 1]) {
+    if (imageRefs.current[0]) {
       gsap.fromTo(
-        imageRefs.current[slidesData.length - 1],
+        imageRefs.current[0],
         { x: -200, opacity: 0 },
         { x: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.5 },
       );
