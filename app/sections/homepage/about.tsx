@@ -196,7 +196,7 @@ const About = () => {
             className="  relative h-[400px] lg:h-[600px] will-change-transform overflow-hidden rounded shadow-2xl"
           >
             <Image
-              src="/brand-images/DSC02024.jpg"
+              src="/brand-images/DSC02019.jpg"
               alt="Luxury car interior"
               className="w-full h-full object-cover "
               fill
