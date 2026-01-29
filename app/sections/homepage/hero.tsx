@@ -1,5 +1,5 @@
 "use client";
-import { useIsMobile } from "@/hooks/useMobile";
+import { ScrollTrigger } from "gsap/all";
 import React, { useRef, useEffect } from "react";
 import { useSplitText } from "@/hooks/useSpliText";
 import gsap from "gsap";

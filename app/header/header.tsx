@@ -44,9 +44,13 @@ const Header = () => {
         draggable={false}
       >
         <div className="container relative z-70 flex justify-between items-center">
-          <Nav />
+          <div className="w-28">
+            <Nav />
+          </div>
           <Logo className="relative z-60" />
-          <NavButton />
+          <div className="w-28">
+            <NavButton />
+          </div>
         </div>
       </LiquidGlassCard>
     </div>

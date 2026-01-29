@@ -145,7 +145,7 @@ const Services = () => {
               ref={(el) => {
                 if (el) cardsRef.current[idx] = el;
               }}
-              className="grid grid-cols-1 lg:grid-cols-2 min-h-screen items-center relative group"
+              className="grid grid-cols-1 lg:grid-cols-2 items-center relative group"
             >
               {/* Text block - appears first on even indices */}
               {isEven && (
@@ -153,51 +153,51 @@ const Services = () => {
                   ref={(el) => {
                     if (el) textRef.current[idx] = el;
                   }}
-                  className="w-full bg-black text-white p-12 lg:p-20 xl:p-24 space-y-8 flex flex-col justify-center min-h-[600px] relative z-10"
+                  className="w-full bg-black text-white p-8 lg:p-12 xl:p-16 space-y-6 flex flex-col justify-center min-h-[400px] lg:min-h-[500px] relative z-10"
                 >
                   {/* Service number badge */}
-                  <div className="absolute top-8 left-8 lg:top-12 lg:left-12">
-                    <span className="text-7xl lg:text-8xl font-bold text-white/20">
+                  <div className="absolute top-6 left-6 lg:top-8 lg:left-8">
+                    <span className="text-6xl lg:text-7xl font-bold text-white/20">
                       0{idx + 1}
                     </span>
                   </div>
 
                   <div className="space-y-2">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-[2px] bg-yellow-500"></div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-[2px] bg-yellow-500"></div>
                       <span className="text-yellow-500 uppercase tracking-wider text-xs font-semibold">
                         Service
                       </span>
                     </div>
-                    <h3 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                    <h3 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                       {service.label}
                     </h3>
                   </div>
 
-                  <p className="text-white/60 leading-relaxed text-base lg:text-lg max-w-xl">
+                  <p className="text-white/60 leading-relaxed text-sm lg:text-base max-w-xl">
                     {service.desc}
                   </p>
 
-                  <ul className="space-y-4 text-sm lg:text-base">
+                  <ul className="space-y-3 text-sm">
                     {service.features.map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-4 text-white/80 hover:text-white transition-colors group/item"
+                        className="flex items-start gap-3 text-white/80 hover:text-white transition-colors group/item"
                       >
-                        <span className="mt-1.5 h-2 w-2 rounded-full bg-yellow-500 group-hover/item:scale-125 transition-transform flex-shrink-0" />
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-yellow-500 group-hover/item:scale-125 transition-transform flex-shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <button className="mt-6 px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 rounded-full text-sm font-semibold text-black uppercase tracking-wider w-fit shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:scale-105 transform">
+                  <button className="mt-4 px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 rounded-full text-sm font-semibold text-black uppercase tracking-wider w-fit shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:scale-105 transform">
                     Book Now →
                   </button>
                 </div>
               )}
 
               {/* Image block */}
-              <div className="relative w-full h-[600px] lg:h-screen overflow-hidden">
+              <div className="relative w-full h-[400px] lg:h-[500px] overflow-hidden">
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -223,44 +223,44 @@ const Services = () => {
                   ref={(el) => {
                     if (el) textRef.current[idx] = el;
                   }}
-                  className="w-full bg-black text-white p-12 lg:p-20 xl:p-24 space-y-8 flex flex-col justify-center min-h-[600px] relative z-10"
+                  className="w-full bg-black text-white p-8 lg:p-12 xl:p-16 space-y-6 flex flex-col justify-center min-h-[400px] lg:min-h-[500px] relative z-10"
                 >
                   {/* Service number badge */}
-                  <div className="absolute top-8 right-8 lg:top-12 lg:right-12">
-                    <span className="text-7xl lg:text-8xl font-bold text-white/20">
+                  <div className="absolute top-6 right-6 lg:top-8 lg:right-8">
+                    <span className="text-6xl lg:text-7xl font-bold text-white/20">
                       0{idx + 1}
                     </span>
                   </div>
 
                   <div className="space-y-2">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-[2px] bg-yellow-500"></div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-[2px] bg-yellow-500"></div>
                       <span className="text-yellow-500 uppercase tracking-wider text-xs font-semibold">
                         Service
                       </span>
                     </div>
-                    <h3 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                    <h3 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                       {service.label}
                     </h3>
                   </div>
 
-                  <p className="text-white/60 leading-relaxed text-base lg:text-lg max-w-xl">
+                  <p className="text-white/60 leading-relaxed text-sm lg:text-base max-w-xl">
                     {service.desc}
                   </p>
 
-                  <ul className="space-y-4 text-sm lg:text-base">
+                  <ul className="space-y-3 text-sm">
                     {service.features.map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-4 text-white/80 hover:text-white transition-colors group/item"
+                        className="flex items-start gap-3 text-white/80 hover:text-white transition-colors group/item"
                       >
-                        <span className="mt-1.5 h-2 w-2 rounded-full bg-yellow-500 group-hover/item:scale-125 transition-transform flex-shrink-0" />
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-yellow-500 group-hover/item:scale-125 transition-transform flex-shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <button className="mt-6 px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 rounded-full text-sm font-semibold text-black uppercase tracking-wider w-fit shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:scale-105 transform">
+                  <button className="mt-4 px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 rounded-full text-sm font-semibold text-black uppercase tracking-wider w-fit shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:scale-105 transform">
                     Book Now →
                   </button>
                 </div>
