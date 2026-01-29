@@ -93,7 +93,7 @@ const Footer = () => {
                   key={idx}
                   href="#"
                   className="w-10 h-10 rounded-full bg-white/5 hover:bg-yellow-500/20 border border-white/10 hover:border-yellow-500/50 flex items-center justify-center transition-all duration-300 group"
-                  aria-label={social}
+                  aria-label={social.name}
                 >
                   <span className="text-gray-400 group-hover:text-yellow-500 transition-colors text-sm">
                     {social.icon}
@@ -115,11 +115,11 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-gray-400 text-sm">
               {[
-                "Maintenance & Servicing",
-                "Advanced Diagnostics",
-                "Performance Upgrades",
-                "Luxury Vehicle Repairs",
+                "Workshop Services",
                 "Body Shop Services",
+                "Spare Parts",
+                "Car Key Programming",
+                "Recovery & Assistance",
               ].map((item) => (
                 <li
                   key={item}
@@ -145,7 +145,6 @@ const Footer = () => {
               {[
                 "About Us",
                 "Our Services",
-                "Gallery",
                 "Contact Us",
                 "Privacy Policy",
                 "Terms & Conditions",
