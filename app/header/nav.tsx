@@ -74,11 +74,11 @@ const Nav = () => {
   }, [open]);
 
   return (
-    <div>
+    <div className="hidden lg:block">
       {/* Toggle Button */}
       <button
         onClick={() => setOpen((p) => !p)}
-        className="bg-slate-300 hover:bg-slate-400 cursor-pointer size-10 flex flex-col items-center justify-center rounded-full relative z-60"
+        className="bg-slate-300  hover:bg-slate-400 cursor-pointer size-10 flex flex-col items-center justify-center rounded-full relative z-60"
       >
         <div
           ref={line1}
