@@ -23,7 +23,7 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
     // Slide in blocks from left
     tl.to(blocksRef.current, {
       scaleX: 1,
-      duration: 0.2,
+      duration: 0.6,
       ease: "power2.inOut",
       stagger: 0.03,
       transformOrigin: "left",
