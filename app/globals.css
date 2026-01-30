@@ -114,3 +114,20 @@
     font-family: "Satoshi", sans-serif;
   }
 }
+
+.block {
+  flex: 1;
+  height: 100%;
+  background: black;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9998;
+
+}

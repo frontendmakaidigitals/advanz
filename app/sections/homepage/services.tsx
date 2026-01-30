@@ -147,57 +147,12 @@ const Services = () => {
               }}
               className="grid grid-cols-1 lg:grid-cols-2 items-center relative group"
             >
-              {/* Text block - appears first on even indices */}
-              {isEven && (
-                <div
-                  ref={(el) => {
-                    if (el) textRef.current[idx] = el;
-                  }}
-                  className="w-full bg-black text-white p-8 lg:p-12 xl:p-16 space-y-6 flex flex-col justify-center min-h-[400px] lg:min-h-[500px] relative z-10"
-                >
-                  {/* Service number badge */}
-                  <div className="absolute top-6 left-6 lg:top-8 lg:left-8">
-                    <span className="text-6xl lg:text-7xl font-bold text-white/20">
-                      0{idx + 1}
-                    </span>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-[2px] bg-yellow-500"></div>
-                      <span className="text-yellow-500 uppercase tracking-wider text-xs font-semibold">
-                        Service
-                      </span>
-                    </div>
-                    <h3 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                      {service.label}
-                    </h3>
-                  </div>
-
-                  <p className="text-white/60 leading-relaxed text-sm lg:text-base max-w-xl">
-                    {service.desc}
-                  </p>
-
-                  <ul className="space-y-3 text-sm">
-                    {service.features.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-3 text-white/80 hover:text-white transition-colors group/item"
-                      >
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-yellow-500 group-hover/item:scale-125 transition-transform flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button className="mt-4 px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 rounded-full text-sm font-semibold text-black uppercase tracking-wider w-fit shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:scale-105 transform">
-                    Book Now →
-                  </button>
-                </div>
-              )}
-
-              {/* Image block */}
-              <div className="relative w-full h-[400px] lg:h-[500px] overflow-hidden">
+              {/* Image block - always first on mobile, positioned based on index on desktop */}
+              <div
+                className={`relative w-full h-[400px] lg:h-[500px] overflow-hidden ${
+                  isEven ? "lg:order-2" : "lg:order-1"
+                }`}
+              >
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -217,54 +172,60 @@ const Services = () => {
                 </div>
               </div>
 
-              {/* Text block - appears second on odd indices */}
-              {!isEven && (
+              {/* Text block - always second on mobile, positioned based on index on desktop */}
+              <div
+                ref={(el) => {
+                  if (el) textRef.current[idx] = el;
+                }}
+                className={`w-full bg-black text-white p-8 lg:p-12 xl:p-16 space-y-6 flex flex-col justify-center min-h-[400px] lg:min-h-[500px] relative z-10 ${
+                  isEven ? "lg:order-1" : "lg:order-2"
+                }`}
+              >
+                {/* Service number badge */}
                 <div
-                  ref={(el) => {
-                    if (el) textRef.current[idx] = el;
-                  }}
-                  className="w-full bg-black text-white p-8 lg:p-12 xl:p-16 space-y-6 flex flex-col justify-center min-h-[400px] lg:min-h-[500px] relative z-10"
+                  className={`absolute top-6 lg:top-8 ${
+                    isEven
+                      ? "left-6 lg:left-8"
+                      : "left-6 lg:right-8 lg:left-auto"
+                  }`}
                 >
-                  {/* Service number badge */}
-                  <div className="absolute top-6 right-6 lg:top-8 lg:right-8">
-                    <span className="text-6xl lg:text-7xl font-bold text-white/20">
-                      0{idx + 1}
+                  <span className="text-6xl lg:text-7xl font-bold text-white/20">
+                    0{idx + 1}
+                  </span>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-[2px] bg-yellow-500"></div>
+                    <span className="text-yellow-500 uppercase tracking-wider text-xs font-semibold">
+                      Service
                     </span>
                   </div>
-
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-[2px] bg-yellow-500"></div>
-                      <span className="text-yellow-500 uppercase tracking-wider text-xs font-semibold">
-                        Service
-                      </span>
-                    </div>
-                    <h3 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                      {service.label}
-                    </h3>
-                  </div>
-
-                  <p className="text-white/60 leading-relaxed text-sm lg:text-base max-w-xl">
-                    {service.desc}
-                  </p>
-
-                  <ul className="space-y-3 text-sm">
-                    {service.features.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-3 text-white/80 hover:text-white transition-colors group/item"
-                      >
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-yellow-500 group-hover/item:scale-125 transition-transform flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button className="mt-4 px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 rounded-full text-sm font-semibold text-black uppercase tracking-wider w-fit shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:scale-105 transform">
-                    Book Now →
-                  </button>
+                  <h3 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                    {service.label}
+                  </h3>
                 </div>
-              )}
+
+                <p className="text-white/60 leading-relaxed text-sm lg:text-base max-w-xl">
+                  {service.desc}
+                </p>
+
+                <ul className="space-y-3 text-sm">
+                  {service.features.map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-white/80 hover:text-white transition-colors group/item"
+                    >
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-yellow-500 group-hover/item:scale-125 transition-transform flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button className="mt-4 px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 rounded-full text-sm font-semibold text-black uppercase tracking-wider w-fit shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:scale-105 transform">
+                  Book Now →
+                </button>
+              </div>
             </div>
           );
         })}

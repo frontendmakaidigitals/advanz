@@ -1,6 +1,7 @@
 "use client";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef, useEffect } from "react";
+import Link from "next/link";
 import { useSplitText } from "@/hooks/useSpliText";
 import gsap from "gsap";
 import useWindowSize from "@/hooks/useWindowSize";
@@ -103,9 +104,11 @@ const Hero = () => {
             <button className="px-5 text-sm py-2 bg-yellow-600 text-white rounded-full">
               Book appointment Now
             </button>
-            <button className="px-5 text-sm py-2 text-slate-100 border hover:bg-yellow-500 hover:text-slate-50 border-slate-400 rounded-full">
-              About us
-            </button>
+            <Link href="/about">
+              <button className="px-5 text-sm py-2 text-slate-100 border hover:bg-yellow-500 hover:text-slate-50 border-slate-400 rounded-full">
+                About us
+              </button>
+            </Link>
           </div>
         </div>
       </div>

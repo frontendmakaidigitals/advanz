@@ -176,10 +176,7 @@ const Footer = () => {
                 <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">
                   Phone
                 </p>
-                <a
-                  href="tel:+1234567890"
-                  className="text-yellow-400 text-xl font-bold hover:text-yellow-300 transition-colors block"
-                >
+                <a className="text-gray-300 text-md font-bold hover:text-yellow-300 transition-colors ">
                   +971 56 993 9879
                 </a>
               </div>
@@ -190,7 +187,7 @@ const Footer = () => {
                 </p>
                 <a
                   href="mailto:info@advanztech.com"
-                  className="text-gray-300 text-sm hover:text-yellow-400 transition-colors block"
+                  className="text-gray-300 text-sm hover:text-yellow-400 transition-colors "
                 >
                   info@advanztech.com
                 </a>

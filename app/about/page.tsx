@@ -4,28 +4,10 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import About from "../sections/about/about";
 import { Circle } from "lucide-react";
-
+import Stats from "../sections/about/stats";
 gsap.registerPlugin(ScrollTrigger);
-
-const sections = [
-  {
-    title: "Our Story",
-    text: "We started with a simple belief — luxury vehicles deserve expert care, not shortcuts. What began as a passion for precision has evolved into a trusted destination for premium automotive service.",
-  },
-  {
-    title: "Our Philosophy",
-    text: "Every decision we make is driven by quality, transparency, and long-term performance. We prioritize precision over speed and craftsmanship over volume.",
-  },
-  {
-    title: "What Sets Us Apart",
-    text: "Factory-grade diagnostics, certified technicians, premium parts, and a no-upsell approach. We focus on what your vehicle truly needs — nothing more, nothing less.",
-  },
-  {
-    title: "Expertise & Experience",
-    text: "With years of hands-on experience working with high-performance and luxury vehicles, our team brings dealership-level knowledge without the dealership mindset.",
-  },
-];
 
 const AboutUs = () => {
   const sectionRefs = useRef<HTMLDivElement[]>([]);
@@ -107,20 +89,8 @@ const AboutUs = () => {
       {/* Divider */}
       <div className="h-px w-full bg-gradient-to-r from-yellow-500/70 to-transparent mb-24" />
 
-      <div>
-        <div>
-          <h2>Our Story</h2>
-          <p>
-            We started with a simple belief — luxury vehicles deserve expert
-            care, not shortcuts. What began as a passion for precision has
-            evolved into a trusted destination for premium automotive service.
-          </p>
-
-          <div>
-            <Image src={""} alt={""} className="" />
-          </div>
-        </div>
-      </div>
+      <About />
+      <Stats />
     </section>
   );
 };
