@@ -129,5 +129,13 @@
   right: 0;
   bottom: 0;
   z-index: 9998;
+}
 
+.page-content {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.page-content.revealed {
+  opacity: 1;
 }

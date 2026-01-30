@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 
-const pageTransition = ({ children }: { children: React.ReactNode }) => {
+const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const router = useRouter();
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -12,6 +12,7 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
   const carRef = useRef<HTMLDivElement>(null);
   const percentageRef = useRef<HTMLDivElement>(null);
   const isTransitioning = useRef(false);
+  const [isRevealed, setIsRevealed] = useState(false);
 
   const coverPage = (url: string) => {
     const tl = gsap.timeline({
@@ -20,7 +21,6 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
       },
     });
 
-    // Slide in blocks from left
     tl.to(blocksRef.current, {
       scaleX: 1,
       duration: 0.6,
@@ -29,7 +29,6 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
       transformOrigin: "left",
     });
 
-    // When blocks are filled, animate car and percentage
     tl.fromTo(
       carRef.current,
       {
@@ -41,10 +40,9 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
         duration: 0.8,
         ease: "power2.inOut",
       },
-      "-=0.2", // Start slightly before blocks finish
+      "-=0.2",
     );
 
-    // Animate percentage counter
     tl.fromTo(
       percentageRef.current,
       {
@@ -64,7 +62,7 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
           }
         },
       },
-      "<", // Start at the same time as car
+      "<",
     );
   };
 
@@ -74,7 +72,6 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
       transformOrigin: "left",
     });
 
-    // Hide car and percentage initially
     gsap.set([carRef.current, percentageRef.current], {
       opacity: 0,
       left: "-100px",
@@ -88,16 +85,18 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
       transformOrigin: "left",
       onComplete: () => {
         isTransitioning.current = false;
+        setIsRevealed(true);
         gsap.set(blocksRef.current, { scaleX: 0 });
       },
     });
   };
 
   useEffect(() => {
+    setIsRevealed(false);
+
     const createBlocks = () => {
       if (!overlayRef.current) return;
 
-      // Clear only the blocks, not the entire innerHTML
       const existingBlocks = overlayRef.current.querySelectorAll(".block");
       existingBlocks.forEach((block) => block.remove());
 
@@ -144,10 +143,8 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className="transition-overlay fixed w-screen h-screen inset-0 pointer-events-none z-[99999999]">
-        {/* Blocks container */}
         <div ref={overlayRef} className="w-full h-full flex"></div>
 
-        {/* Car Image - separate from blocks */}
         <div
           ref={carRef}
           className="absolute top-1/2 -translate-y-1/2 w-20 h-20 opacity-0"
@@ -160,7 +157,6 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
           />
         </div>
 
-        {/* Percentage Counter - separate from blocks */}
         <div
           ref={percentageRef}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-6xl font-bold opacity-0"
@@ -168,9 +164,9 @@ const pageTransition = ({ children }: { children: React.ReactNode }) => {
           0%
         </div>
       </div>
-      {children}
+      <div style={{ opacity: isRevealed ? 1 : 0 }}>{children}</div>
     </>
   );
 };
 
-export default pageTransition;
+export default PageTransition;

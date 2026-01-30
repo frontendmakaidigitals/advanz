@@ -39,7 +39,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <PageTransition>
-       
           <Header />
           <div id="smooth-wrapper">
             <div id="smooth-content">
