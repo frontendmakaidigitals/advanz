@@ -7,6 +7,7 @@ import Image from "next/image";
 import About from "../sections/about/about";
 import { Circle } from "lucide-react";
 import Stats from "../sections/about/stats";
+import Speciality from "../sections/about/speciality";
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
@@ -91,6 +92,7 @@ const AboutUs = () => {
 
       <About />
       <Stats />
+      <Speciality />
     </section>
   );
 };
