@@ -9,11 +9,13 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 
 type SplitTextOptions = {
   selector?: string;
+  textRef?: React.RefObject<HTMLElement | null>;
+  trigger?: string | Element;
+  triggerRef?: React.RefObject<HTMLElement | null>;
   duration?: number;
   y?: number;
   alpha?: number;
   stagger?: number;
-  trigger?: string | Element;
   start?: string;
   end?: string;
   once?: boolean;
@@ -30,11 +32,13 @@ type SplitTextOptions = {
 
 export function useSplitText({
   selector = ".split",
+  textRef,
+  trigger,
+  triggerRef,
   duration = 1,
   y = 100,
   alpha = 0,
   stagger = 0.05,
-  trigger,
   start = "top 80%",
   end = "bottom top",
   once = true,
@@ -43,7 +47,10 @@ export function useSplitText({
   delay = 0,
 }: SplitTextOptions = {}) {
   useEffect(() => {
-    const split = new SplitText(selector, {
+    const target = textRef?.current || selector;
+    if (!target) return;
+
+    const split = new SplitText(target, {
       type,
       linesClass,
     });
@@ -61,21 +68,38 @@ export function useSplitText({
       autoAlpha: alpha,
       stagger,
       ease: "power3.out",
-      delay: delay,
-      scrollTrigger: trigger
-        ? {
-            trigger,
-            start,
-            end,
-            once,
-          }
-        : undefined,
+      delay,
+      scrollTrigger:
+        trigger || triggerRef?.current
+          ? {
+              trigger: triggerRef?.current || trigger,
+              start,
+              end,
+              once,
+            }
+          : undefined,
     });
 
     return () => {
       split.revert();
       animation.kill();
-      if (trigger) ScrollTrigger.getAll().forEach((t) => t.kill());
+      if (trigger || triggerRef?.current) {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      }
     };
-  }, [selector, duration, y, alpha, stagger, trigger, start, end, once, type]);
+  }, [
+    selector,
+    textRef,
+    trigger,
+    triggerRef,
+    duration,
+    y,
+    alpha,
+    stagger,
+    start,
+    end,
+    once,
+    type,
+    delay,
+  ]);
 }

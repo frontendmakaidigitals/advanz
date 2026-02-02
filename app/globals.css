@@ -115,7 +115,7 @@
   }
 }
 
-.block {
+.block-loader {
   flex: 1;
   height: 100%;
   background: black;
@@ -138,4 +138,42 @@
 
 .page-content.revealed {
   opacity: 1;
+}
+
+.dark {
+  --sidebar: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+.ContentEditable__root p,
+.ContentEditable__root h1,
+.ContentEditable__root h2,
+.ContentEditable__root h3,
+.ContentEditable__root h4,
+.ContentEditable__root h5,
+.ContentEditable__root h6,
+.ContentEditable__root blockquote,
+.ContentEditable__root ul,
+.ContentEditable__root ol {
+  margin-top: 0.25em !important; /* adjust to taste */
+  margin-bottom: 0.25em; /* adjust to taste */
+  line-height: 1.4;
+  list-style: disc;
+}
+
+/* For completely tight spacing */
+.ContentEditable__root p,
+.ContentEditable__root h1,
+.ContentEditable__root h2,
+.ContentEditable__root h3,
+.ContentEditable__root h4,
+.ContentEditable__root h5,
+.ContentEditable__root h6 {
+  margin: 0;
 }

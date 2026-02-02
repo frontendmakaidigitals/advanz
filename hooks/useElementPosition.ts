@@ -8,7 +8,7 @@ export function useElementPositionTrigger(
     elementPoint?: Point;
     triggerPoint?: Point;
     once?: boolean;
-  } = {}
+  } = {},
 ) {
   const {
     elementPoint = "bottom",
