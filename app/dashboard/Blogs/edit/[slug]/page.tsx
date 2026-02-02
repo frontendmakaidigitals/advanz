@@ -15,7 +15,7 @@ import {
   SelectContent,
 } from "@/components/ui/select";
 import { DialogTitle } from "@radix-ui/react-dialog";
-import Spinner from "@/app/(user)/app_chunks/spinner";
+import Spinner from "@/app/(user)/components/spinner";
 import { Editor } from "@/components/blocks/editor-00/editor";
 import { toast } from "sonner";
 import { Eye, Upload, User, Facebook, Twitter } from "lucide-react";
@@ -110,7 +110,7 @@ export default function Page() {
 
   const handleChange = (
     key: keyof typeof blogData,
-    value: string | File | null
+    value: string | File | null,
   ) => {
     setBlogData((prev) => ({
       ...prev,
@@ -162,7 +162,7 @@ export default function Page() {
 
       if (result.success) {
         toast.success(
-          blogData ? "Blog updated successfully!" : "Blog saved successfully!"
+          blogData ? "Blog updated successfully!" : "Blog saved successfully!",
         );
         router.push("/dashboard/Blogs");
 
@@ -329,8 +329,8 @@ export default function Page() {
                 {typeof blogData.image === "string"
                   ? blogData.image
                   : blogData.image instanceof File
-                  ? blogData.image.name
-                  : ""}
+                    ? blogData.image.name
+                    : ""}
               </p>
               <Input
                 id="fileAdd"
@@ -407,8 +407,8 @@ export default function Page() {
               {typeof blogData.image === "string"
                 ? blogData.image
                 : blogData.image instanceof File
-                ? blogData.image.name
-                : ""}
+                  ? blogData.image.name
+                  : ""}
             </DialogTitle>
             {imagePreview && (
               <img

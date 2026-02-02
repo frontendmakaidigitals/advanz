@@ -110,7 +110,7 @@ const Marquee = () => {
       className="overflow-hidden w-full relative bg-neutral-900 py-16"
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Title */}
           <h2 className="text-5xl font-bold text-white whitespace-nowrap flex-shrink-0">
             Brands we <br />
