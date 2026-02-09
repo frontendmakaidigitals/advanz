@@ -55,7 +55,7 @@ const ContactFormSection = () => {
         <div className="  flex flex-col justify-end h-full ">
           <Image
             ref={imageRef}
-            src="https://images.pexels.com/photos/16510639/pexels-photo-16510639.jpeg"
+            src="/contact/luxury.jpg"
             alt="Contact"
             fill
             className=" w-full h-full object-cover scale-[1.2]"

@@ -48,7 +48,7 @@ const Services = () => {
     },
     {
       label: "Car Programming",
-      img: "car-programming.webp",
+      img: "prog.png",
       desc: "Advanced vehicle coding, module programming, and software calibration tailored to modern automotive systems.",
       features: [
         "ECU & module coding",
@@ -59,7 +59,7 @@ const Services = () => {
     },
     {
       label: "Recovery & Assistance",
-      img: "car-tow.jpg",
+      img: "recovery.jpg",
       desc: "24/7 roadside recovery and emergency assistance delivering fast, secure transport and complete peace of mind.",
       features: [
         "24/7 roadside assistance",

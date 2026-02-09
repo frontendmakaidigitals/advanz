@@ -180,10 +180,10 @@ const About = () => {
 
         {/* Bottom Image with Parallax */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_.8fr] gap-8 mt-10">
-          <div className="relative h-[400px] lg:h-[600px] will-change-transform overflow-hidden rounded shadow-2xl">
+          <div className="relative h-[400px] lg:h-[600px] will-change-transform overflow-hidden shadow-2xl">
             <Image
               ref={bottomImageContainerRef}
-              src="/brand-images/DSC02019.jpg"
+              src="/hero/bmw-repair-img.webp"
               alt="Luxury car interior"
               className="w-full h-full object-cover scale-[1.5]"
               fill
