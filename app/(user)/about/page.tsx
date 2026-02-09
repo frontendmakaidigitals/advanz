@@ -57,9 +57,7 @@ const AboutUs = () => {
       {/* Hero */}
       <div className="min-h-[85vh] relative text-white flex items-end pb-16 px-6 md:px-20">
         <Image
-          src={
-            "https://images.pexels.com/photos/6872595/pexels-photo-6872595.jpeg"
-          }
+          src={"/about/banner.png"}
           alt={""}
           fill
           className="object-cover"
@@ -84,7 +82,7 @@ const AboutUs = () => {
             detail.
           </p>
           <Link href={"/contact"}>
-            <button className="px-5 py-2 rounded-lg bg-yellow-500 text-black mt-3">
+            <button className="px-5 py-2  bg-yellow-500 text-black mt-3">
               Book a service now
             </button>
           </Link>

@@ -102,12 +102,12 @@ const Hero = () => {
           </p>
 
           <div className="flex gap-4 mt-4 items-center">
-            <button className="px-5 text-sm py-2 bg-yellow-600 text-white rounded-full">
+            <button className="px-5 text-sm py-2 bg-yellow-600 text-white ">
               Book appointment Now
             </button>
 
             <Link href="/about">
-              <button className="px-5 text-sm py-2 text-slate-100 border border-slate-400 hover:bg-yellow-500 hover:text-slate-50 rounded-full">
+              <button className="px-5 text-sm py-2 text-slate-100 border border-slate-400 hover:bg-yellow-500 hover:text-slate-50 ">
                 About us
               </button>
             </Link>

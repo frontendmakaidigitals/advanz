@@ -88,7 +88,7 @@ const About = () => {
         <div className="relative flex m justify-end">
           <div
             ref={greenDivRef}
-            className="bg-green-400 shadow-md z-10 w-[150px] lg:w-2xs absolute right-0 lg:left-10 -top-8 aspect-square"
+            className=" shadow-md z-10 w-[150px] lg:w-2xs absolute right-0 lg:left-10 -top-8 aspect-square"
           >
             <Image
               src={"/about/about-1.avif"}
@@ -99,7 +99,7 @@ const About = () => {
           </div>
           <div
             ref={redDivRef}
-            className="w-full lg:w-2/3 h-[250px] lg:h-[500px] bg-red-300"
+            className="w-full lg:w-2/3 h-[250px] lg:h-[500px] "
           >
             <Image
               src={"/about/about-2.png"}
