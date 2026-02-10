@@ -1,8 +1,8 @@
 import Link from "next/link";
 const NavButton = () => {
   return (
-    <Link href={'/contact'}>
-      <div className="group  relative cursor-pointer text-sm p-2 w-30 border bg-white  overflow-hidden text-black text-center font-semibold">
+    <Link href={"/contact"}>
+      <div className="group  relative cursor-pointer text-sm p-2 w-30 border bg-amber-400 hover:bg-white overflow-hidden text-black text-center font-semibold">
         <span className="translate-y-0 group-hover:-translate-y-12 group-hover:opacity-0 transition-all duration-300 inline-block">
           Book Now
         </span>
