@@ -25,7 +25,7 @@ const brands = [
 
 export default function Marquee() {
   return (
-    <section className="w-full bg-neutral-900 py-16 overflow-hidden">
+    <section className="w-full bg-[#16151A] py-16 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Title */}

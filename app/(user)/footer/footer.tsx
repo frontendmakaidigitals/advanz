@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   return (
-    <footer className="footer relative bg-gradient-to-b from-black via-zinc-950 to-black text-white px-6 md:px-20 py-20 overflow-hidden">
+    <footer className="footer relative bg-[#16151A] text-white px-6 md:px-20 py-20 overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div

@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
@@ -222,9 +222,11 @@ const Services = () => {
                   ))}
                 </ul>
 
-                <button className="mt-4 px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 rounded-full text-sm font-semibold text-black uppercase tracking-wider w-fit shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:scale-105 transform">
-                  Book Now →
-                </button>
+                <Link href={"/contact"}>
+                  <button className="mt-4 px-6 py-3 bg-[#d69016] text-white/80 hover:text-white transition-all duration-300  text-sm font-semibold text-black uppercase tracking-wider w-fit shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:scale-105 transform">
+                    Book Now →
+                  </button>
+                </Link>
               </div>
             </div>
           );

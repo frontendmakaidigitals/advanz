@@ -36,9 +36,8 @@ export default function Page() {
 
               {/* SOCIAL */}
               <div className="mt-28 lg:mt-8 flex gap-6 flex-wrap text-sm text-white/45 relative z-10">
-                <p>@aeriumhome</p>
-                <p>discord.gg/aeriumhome</p>
-                <p>@aerium.home</p>
+                <p>info@advanztech.com</p>
+                <p>support@advanztech.com</p>
               </div>
             </div>
 

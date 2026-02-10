@@ -23,7 +23,7 @@ const stats = [
 
 const Stats = () => {
   return (
-    <div className="section text-slate-50 bg-black py-20 px-4 lg:px-8">
+    <div className="section text-slate-50 bg-[#16151A] py-20 px-4 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-2xl leading-1.2 mx-auto mb-4">
