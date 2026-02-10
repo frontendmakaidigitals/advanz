@@ -157,6 +157,18 @@ const Footer = () => {
             <p className="text-gray-500 text-xs">
               © {new Date().getFullYear()} Advanz TECH. All rights reserved.
             </p>
+            <div>
+              <p className="text-sm text-gray-500">
+                Design & Developed by{" "}
+                <a
+                  href="https://spok.digital"
+                  target="_blank"
+                  className="text-amber-400 hover:text-amber-500 transition-colors"
+                >
+                  Spok Digital
+                </a>
+              </p>
+            </div>
             <div className="flex gap-6 text-xs text-gray-500">
               <a href="#" className="hover:text-yellow-400 transition-colors">
                 Privacy Policy
