@@ -50,9 +50,9 @@ const Blogs = () => {
   ];
 
   return (
-    <div className="bg-white mb-20 py-10">
+    <div className="bg-black mb-20 py-10">
       <div className="container">
-        <h2 className="text-4xl  font-bold text-center ">Insights & Stories</h2>
+        <h2 className="text-4xl  font-bold text-white text-center ">Insights & Stories</h2>
 
         <Carousel className="w-full mt-6">
           <CarouselContent>

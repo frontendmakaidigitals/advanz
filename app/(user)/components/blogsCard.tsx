@@ -28,11 +28,11 @@ const BlogCards = ({ blog }: { blog: BlogProp }) => {
         </div>
       </div>
       <div className="mt-6 px-5">
-        <h3 className="text-lg font-semibold leading-tight">{blog.title}</h3>
-        <p className="line-clamp-2 text-sm mt-1 ">{blog.desc}</p>
-        <button className="flex font-semibold items-center gap-2 mt-3">
+        <h3 className="text-lg font-semibold text-white leading-tight">{blog.title}</h3>
+        <p className="line-clamp-2 text-slate-100 text-sm mt-1 ">{blog.desc}</p>
+        <button className="flex font-semibold text-slate-300 items-center gap-2 mt-3">
           Learn more
-          <span className="bg-black rounded-lg px-2 py-1">
+          <span className="bg-amber-400 text-black rounded-lg px-2 py-1">
             <ArrowRight className={"size-3 text-white rounded"} />
           </span>
         </button>

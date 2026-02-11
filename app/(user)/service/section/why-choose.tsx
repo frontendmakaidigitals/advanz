@@ -71,13 +71,13 @@ export default function WhyChooseSection({
       <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Content */}
         <div>
-          <h2 className="text-5xl font-bold mb-6">{title}</h2>
+          <h2 className="text-5xl text-slate-50 font-bold mb-6">{title}</h2>
 
-          <p className="text-slate-600 leading-relaxed mb-8 max-w-xl">
+          <p className="text-slate-100 leading-relaxed mb-8 max-w-xl">
             {description}
           </p>
 
-          <ul className="grid grid-cols-2 gap-y-4 text-slate-700 mb-6">
+          <ul className="grid grid-cols-2 gap-y-4 text-slate-300 mb-6">
             {features.map((item, i) => (
               <li key={i} className="flex items-center gap-2 text-sm">
                 <BadgeCheck className="size-4 fill-green-500 stroke-white" />
@@ -127,7 +127,7 @@ export default function WhyChooseSection({
             </div>
 
             <p className="text-sm font-bold text-slate-900">{trustText}</p>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-slate-200 mt-1">
               Reliable • Transparent • Professional
             </p>
           </div>

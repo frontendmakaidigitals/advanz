@@ -97,9 +97,9 @@ function Testimonial() {
     return () => clearInterval(interval);
   }, [api]);
   return (
-    <section className=" bg-white py-24">
+    <section className=" bg-black py-24">
       <div className="mb-6 container">
-        <h2 className="text-4xl font-semibold font-domine text-center">
+        <h2 className="text-4xl text-white font-semibold font-domine text-center">
           Trusted by our customers
         </h2>
         <div className="flex flex-col items-center lg:flex-row justify-center gap-3 lg:gap-2 mt-4">
@@ -109,7 +109,7 @@ function Testimonial() {
                 <Star className="text-yellow-500 fill-amber-400" key={i} />
               ))}
             </div>
-            <span>4 star rating out of 50 reviews</span>
+            <span className="text-white">4 star rating out of 50 reviews</span>
           </div>
 
           <div className="lg:pl-4">
@@ -118,7 +118,7 @@ function Testimonial() {
                 "https://www.google.com/search?sca_esv=5e99471b1a2d566a&sxsrf=ANbL-n4JxV4ZpB0eDJF2Zt7F0CylW7f1QQ:1770020762859&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOZ0y6bqs5taGBfc6JHwKf_7CCsEwoyaZc6txNlIxQJUCwPs1sP5o_enXr_pzEXIuK4rUOB-9d7NAcb8-LHksD7GkTRwu&q=Advanz+Tech+Reviews&sa=X&ved=2ahUKEwiawMKWsbqSAxWvcWwGHb7hDwwQ0bkNegQILxAH&biw=1536&bih=730&dpr=1.25&aic=0#lrd=0x3e5f6994feb5fdf1:0x885a3f7b670c18ef,3,,,,"
               }
             >
-              <button className="bg-black px-3 py-1.5 text-white rounded-lg">
+              <button className="bg-amber-400 px-3 py-1.5 text-black font-medium ">
                 Leave a review
               </button>
             </Link>

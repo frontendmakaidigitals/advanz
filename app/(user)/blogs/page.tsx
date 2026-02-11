@@ -71,7 +71,7 @@ const Page = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#fafaf8]">
+    <div className="min-h-screen text-slate-50">
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap");
 
@@ -165,7 +165,7 @@ const Page = () => {
           <h1 className="font-display text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-4">
             Stories
           </h1>
-          <p className="font-body text-xl md:text-2xl text-gray-600 max-w-2xl">
+          <p className="font-body text-xl md:text-2xl text-gray-100 max-w-2xl">
             Exploring ideas at the intersection of technology, design, and
             culture
           </p>
@@ -192,7 +192,7 @@ const Page = () => {
                   <span className="category-badge inline-block px-4 py-2 bg-black text-white text-xs font-body font-medium tracking-widest uppercase rounded-full">
                     {featuredPost.category}
                   </span>
-                  <span className="text-sm font-body text-gray-500">
+                  <span className="text-sm font-body text-gray-200">
                     {featuredPost.id
                       ? new Date(featuredPost.id).toLocaleDateString("en-US", {
                           month: "long",
@@ -206,13 +206,14 @@ const Page = () => {
                   {featuredPost.title}
                 </h2>
                 {featuredPost.content && (
-                  <div className="font-body text-lg text-gray-700 mb-8 line-clamp-3">
+                  <div className="font-body text-lg text-gray-200! mb-8 line-clamp-3">
                     <Editor
                       editorSerializedState={
                         typeof featuredPost.content === "string"
                           ? JSON.parse(featuredPost.content)
                           : featuredPost.content
                       }
+                      text="text-gray-300!"
                       readOnly
                       clampLines={3}
                       blogPage={false}

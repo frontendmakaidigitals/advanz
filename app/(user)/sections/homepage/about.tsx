@@ -135,7 +135,7 @@ const About = () => {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative bg-white">
+    <div ref={sectionRef} className="relative bg-[#0a0a0a]">
       {/* Hero Image with Parallax */}
       <div className="relative h-screen overflow-hidden">
         <div
@@ -154,7 +154,7 @@ const About = () => {
         </div>
         {/* Gradient Overlay */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a0a]" />
         </div>
       </div>
 
@@ -164,13 +164,13 @@ const About = () => {
           {/* Text Content */}
           <div ref={textRef} className="space-y-6 will-change-transform">
             <h2 className="text-5xl lg:text-6xl tracking-tighter text-center font-bold leading-tight">
-              <span className="inline-block text-black ">
+              <span className="inline-block text-slate-50 ">
                 Automotive Repair Garage
               </span>
               <br />
-              <span className="inline-block  text-black "> in Dubai</span>
+              <span className="inline-block  text-slate-50 "> in Dubai</span>
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
+            <p className="text-lg text-gray-100 leading-relaxed text-center max-w-3xl mx-auto">
               At Advanz Tech, we provide a complete range of professional car
               repair, maintenance, and diagnostic services designed to keep your
               vehicle running safely and smoothly.
@@ -198,14 +198,14 @@ const About = () => {
             {stats.map((stat, idx) => (
               <div
                 key={idx}
-                className={`stats-card bg-white py-6 transition-shadow duration-300 ${
+                className={`stats-card bg-slate-900 px-5 py-6 transition-shadow duration-300 ${
                   idx === stats.length - 1 ? "" : "border-b"
                 }`}
               >
-                <h3 className="text-3xl font-bold mb-2 text-gray-900">
+                <h3 className="text-3xl font-bold mb-2 text-gray-50">
                   {stat.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed line-clamp-2">
+                <p className="text-gray-100 leading-relaxed line-clamp-2">
                   {stat.description}
                 </p>
               </div>

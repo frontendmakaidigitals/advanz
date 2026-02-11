@@ -102,10 +102,10 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="bg-white py-10">
+      <section className=" py-10">
         <div className="container ">
           <div className="mb-10">
-            <h1 className="text-4xl font-[600] ">
+            <h1 className="text-4xl text-slate-50 font-[600] ">
               Easily Find Us on Google Maps
             </h1>
           </div>

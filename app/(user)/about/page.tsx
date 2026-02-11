@@ -105,7 +105,7 @@ const AboutUs = () => {
     });
   }, []);
   return (
-    <section className="text-black">
+    <section className="text-slate-50">
       {/* Hero */}
       <div className="min-h-[85vh] relative text-white flex items-end pb-16 px-6 md:px-20">
         <Image
