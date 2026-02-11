@@ -26,7 +26,7 @@ const FloatingWhatsappIcon = () => {
 
         <Link
           href={
-            "https://wa.me/97143707996?text=Hi%20I%20would%20like%20to%20book%20a%20service"
+            "https://wa.me/+9710569939879?text=Hi%20I%20would%20like%20to%20book%20a%20service"
           }
         >
           {" "}
