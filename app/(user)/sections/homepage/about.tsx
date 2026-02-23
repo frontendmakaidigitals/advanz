@@ -164,16 +164,18 @@ const About = () => {
           {/* Text Content */}
           <div ref={textRef} className="space-y-6 will-change-transform">
             <h2 className="text-5xl lg:text-6xl tracking-tighter text-center font-bold leading-tight">
-              <span className="inline-block text-slate-50 ">
-                Automotive Repair Garage
+              <span className="inline-block text-slate-50">
+                Premium Luxury Auto Care
               </span>
               <br />
-              <span className="inline-block  text-slate-50 "> in Dubai</span>
+              <span className="inline-block text-slate-50"> in Dubai</span>
             </h2>
+
             <p className="text-lg text-gray-100 leading-relaxed text-center max-w-3xl mx-auto">
-              At Advanz Tech, we provide a complete range of professional car
-              repair, maintenance, and diagnostic services designed to keep your
-              vehicle running safely and smoothly.
+              Advanz Tech delivers world-class servicing for luxury vehicles
+              including BMW, Mercedes-Benz, Audi, Porsche, and Range Rover. From
+              precision repairs to advanced diagnostics, we provide
+              dealership-level expertise without the dealership hassle.
             </p>
           </div>
         </div>

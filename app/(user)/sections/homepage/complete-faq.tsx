@@ -5,39 +5,39 @@ import Link from "next/link";
 import { useRef, useEffect } from "react";
 const faqData = [
   {
-    question: "What services does your automotive garage offer?",
+    question: "What services does your luxury auto workshop offer?",
     answer:
-      "We provide complete automotive services including routine maintenance, engine diagnostics, brake repair, suspension work, electrical troubleshooting, and performance upgrades for luxury and standard vehicles.",
+      "We provide comprehensive services including scheduled maintenance, advanced diagnostics, engine and transmission repair, brake and suspension work, electrical troubleshooting, and performance tuning for premium vehicles.",
   },
   {
-    question: "Do you specialize in luxury or high-performance cars?",
+    question: "Do you specialize in specific luxury car brands?",
     answer:
-      "Yes, we specialize in servicing luxury and high-performance brands such as BMW, Mercedes-Benz, Audi, Porsche, Land Rover, and other premium vehicles using manufacturer-recommended tools and procedures.",
+      "Yes. Our technicians are highly experienced with BMW, Mercedes-Benz, Audi, Porsche, Range Rover, Bentley, and other high-end vehicles, using manufacturer-grade diagnostic tools and procedures.",
   },
   {
-    question: "How long does a typical car service take?",
+    question: "How long does a typical luxury car service take?",
     answer:
-      "A standard service usually takes between 2 to 4 hours. Complex repairs or diagnostics may require additional time, which will always be communicated to you in advance.",
+      "A standard maintenance service usually takes 2–4 hours. Complex diagnostics or repairs may require additional time, which will always be communicated clearly before work begins.",
   },
   {
-    question: "Do you use genuine spare parts?",
+    question: "Do you use genuine or OEM parts?",
     answer:
-      "Absolutely. We use only genuine or OEM-approved spare parts to ensure performance, reliability, and warranty compliance for your vehicle.",
+      "Absolutely. We use genuine or OEM-approved parts to ensure optimal performance, reliability, and to maintain your vehicle’s warranty standards.",
   },
   {
-    question: "Is prior appointment required for servicing?",
+    question: "Is an appointment required?",
     answer:
-      "While walk-ins are welcome, we highly recommend booking an appointment to minimize waiting time and allow our technicians to prepare for your vehicle in advance.",
+      "Appointments are recommended to ensure priority service and minimal waiting time, although we do accommodate urgent walk-ins whenever possible.",
   },
   {
     question: "Do you provide warranty on repairs?",
     answer:
-      "Yes, all our repairs and replacement parts come with a service warranty. Warranty duration depends on the type of service or component replaced.",
+      "Yes, all repairs and replacement parts are covered by a service warranty. The duration varies depending on the service or components involved.",
   },
   {
-    question: "Can I track the status of my car service?",
+    question: "Will I receive updates during the service process?",
     answer:
-      "Yes, our team keeps you informed at every stage of the service process via phone or WhatsApp updates, ensuring full transparency.",
+      "Yes. We provide transparent progress updates via phone or WhatsApp, including diagnostics reports and approval before major repairs.",
   },
 ];
 const FAQE = () => {

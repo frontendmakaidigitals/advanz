@@ -33,7 +33,7 @@ const FloatingWhatsappIcon = () => {
           <motion.div
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
-            className="relative rounded-full p-3 bg-green-400 shadow-xl cursor-pointer"
+            className="relative rounded-full p-3  shadow-xl cursor-pointer"
           >
             <Image
               src="/whatsapp-outline.png"

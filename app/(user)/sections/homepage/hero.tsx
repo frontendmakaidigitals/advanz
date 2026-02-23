@@ -145,12 +145,13 @@ const Hero = () => {
       >
         <div className="max-w-4xl">
           <h1 className="split text-5xl lg:text-6xl mainHead text-slate-50 font-[600]">
-            Luxury Car Repair & Maintenance Garage in Dubai
+            Premium Luxury Auto Care in Dubai
           </h1>
 
           <p className="split2 mt-3 max-w-3xl text-slate-100">
-            Advanz Tech is your trusted place for expert car repair, servicing,
-            and care — from everyday maintenance to advanced diagnostics.
+            Specialized repair, maintenance, and advanced diagnostics for luxury
+            and performance vehicles. Trusted by owners of BMW, Mercedes-Benz,
+            Audi, Porsche, and Range Rover across Dubai.
           </p>
 
           <div className="flex gap-4 mt-4 items-center">
